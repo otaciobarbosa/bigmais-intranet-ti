@@ -43,12 +43,120 @@ if (!is_array($dataJobs)) {
 </head>
 <body>
 
-    <div class="navbar">
-        <span class="material-icons">dashboard</span>
-    </div>
-        <div class="panel-grid">
+    <?php  include 'nav.php'; ?>
+
+    <div class="container">
+    <div class="panel-grid">
+
     <div class="panel">
-        <h3>VENDAS TOTAIS POR LOJA</h3>
+        <h3 style="display: flex; align-items: center;">
+          <span class="material-icons" style="margin-right: 8px;">double_arrow</span>
+          JOB'S
+        </h3>
+        <div class="table-container">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">JOB</th>
+                        <th style="text-align:center;">SETOR</th>
+                        <th>TITULO</th>
+                        <th style="text-align:center;">PARADO</th>
+                        <th style="text-align:center;">FALHOU</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($dataJobs) && is_array($dataJobs)) {
+                        foreach ($dataJobs as $job) {
+                            echo '<tr>';
+                            echo '<td style="text-align:center;">' . $job['JOB'] . '</td>';
+                            echo '<td style="text-align:center;">' . $job['SETOR'] . '</td>';
+                            echo '<td>' . $job['TITULO'] . '</td>';
+                            echo '<td style="text-align:center;">' . $job['PARADO'] . '</td>';
+                            echo '<td style="text-align:center;">' . $job['FALHOU'] . '</td>';
+                            echo '</tr>';
+                        }
+                    } else {
+                        echo '<tr><td colspan="3">Nenhum job encontrado.</td></tr>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3 style="display: flex; align-items: center;">
+          <span class="material-icons" style="margin-right: 8px;">double_arrow</span>
+          COMPARATIVO DE VENDAS
+        </h3>
+        <div class="table-container">
+            <table class="custom-table">
+            <thead>
+                <tr>
+                    <th style="text-align:center;">EMPRESA</th>
+                    <th style="text-align:center;">TOTAL SOCIN</th>
+                    <th style="text-align:center;">TOTAL PDV DOCTO</th>
+                    <th style="text-align:center;">TOTAL ABC</th>
+                    <th style="text-align:center;">DIFF PDVDOCTO x SOCIN</th>
+                    <th style="text-align:center;">DIFF PDVDOCTO x COMERCIAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($dataIntegracaoVendas as $loja): ?>
+                <tr>
+                    <td style="text-align:center;"><?php echo $loja['NROEMPRESA']; ?></td>
+                    <td style="text-align:center;"><?php echo $loja['SOCIN_TOTAL']; ?></td>
+                    <td style="text-align:center;"><?php echo $loja['PDV_DOCTO_TOTAL']; ?></td>
+                    <td style="text-align:center;"><?php echo $loja['COMERCIAL_TOTAL']; ?></td>
+                    <td style="text-align:center;"><?php echo $loja['PDVDOCTO_SOCIN']; ?></td>
+                    <td style="text-align:center;"><?php echo $loja['PDVDOCTO_COMERCIAL']; ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3 style="display: flex; align-items: center;">
+          <span class="material-icons" style="margin-right: 8px;">double_arrow</span>
+          VENDAS COM MAIS DE UMA LINHA NA PDV DOCTO
+        </h3>
+        <div class="table-container">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                      <th style="text-align:center;">NROEMPRESA</td>
+                      <th style="text-align:center;">NUMERODF</td>
+                      <th style="text-align:center;">NROCHECKOUT</td>
+                      <th style="text-align:center;">QUANTIDADE</td>
+                      <th style="text-align:center;">MIN_DTAHORAINSERCAO</td>
+                      <th style="text-align:center;">MAX_DTAHORAINSERCAO</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($dataDuplicidadePdvDocto as $item): ?>
+                        <tr style="<?php echo ($item['QUANTIDADE'] > 2) ? 'background-color: #ff3340;' : ''; ?>">
+                            <td style="text-align:center;font-weight: bold;"><?php echo $item['NROEMPRESA']; ?></td>
+                            <td style="text-align:center;"><?php echo $item['NUMERODF']; ?></td>
+                            <td style="text-align:center;"><?php echo $item['NROCHECKOUT']; ?></td>
+                            <td style="text-align:center;"><?php echo $item['QUANTIDADE']; ?></td>
+                            <td style="text-align:center;"><?php echo $item['MIN_DTAHORAINSERCAO']; ?></td>
+                            <td style="text-align:center;"><?php echo $item['MAX_DTAHORAINSERCAO']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="panel">
+        <h3 style="display: flex; align-items: center;">
+          <span class="material-icons" style="margin-right: 8px;">double_arrow</span>
+          VENDAS TOTAIS POR LOJA
+        </h3>
         <div class="table-container">
             <table class="custom-table">
                 <thead>
@@ -82,113 +190,7 @@ if (!is_array($dataJobs)) {
             </table>
         </div>
     </div>
-
-        <div class="panel">
-        <div class="card-grid">
-            <?php 
-            $classes = ['card-1', 'card-2', 'card-3', 'card-4', 'card-5', 'card-6']; // Classe dos cartões
-            foreach ($dataIntegracaoVendas as $index => $loja): 
-                $cardClass = $classes[$index % count($classes)];
-            ?>
-            <div class="card <?php echo $cardClass; ?>" >
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>EMPRESA</th>
-                            <td><?php echo $loja['NROEMPRESA']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>TOTAL SOCIN</th>
-                            <td><?php echo $loja['SOCIN_TOTAL']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>TOTAL PDV DOCTO</th>
-                            <td><?php echo $loja['PDV_DOCTO_TOTAL']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>TOTAL ABC</th>
-                            <td><?php echo $loja['COMERCIAL_TOTAL']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>DIFF PDVDOCTO x SOCIN</th>
-                            <td><?php echo $loja['PDVDOCTO_SOCIN']; ?></td>
-                        </tr>
-                        <tr>
-                            <th>DIFF PDVDOCTO x COMERCIAL</th>
-                            <td><?php echo $loja['PDVDOCTO_COMERCIAL']; ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <?php endforeach; ?>
-        </div>
-        </div>
-
-    <div class="panel">
-        <h3>VENDAS COM MAIS DE UMA LINHA NA PDV DOCTO</h3>
-        <div class="table-container">
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                      <th style="text-align:center;">NROEMPRESA</td>
-                      <th style="text-align:center;">NUMERODF</td>
-                      <th style="text-align:center;">NROCHECKOUT</td>
-                      <th style="text-align:center;">QUANTIDADE</td>
-                      <th style="text-align:center;">MIN_DTAHORAINSERCAO</td>
-                      <th style="text-align:center;">MAX_DTAHORAINSERCAO</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($dataDuplicidadePdvDocto as $item): ?>
-                        <tr style="<?php echo ($item['QUANTIDADE'] > 2) ? 'background-color: #ff3340;' : ''; ?>">
-                            <td style="text-align:center;font-weight: bold;"><?php echo $item['NROEMPRESA']; ?></td>
-                            <td style="text-align:center;"><?php echo $item['NUMERODF']; ?></td>
-                            <td style="text-align:center;"><?php echo $item['NROCHECKOUT']; ?></td>
-                            <td style="text-align:center;"><?php echo $item['QUANTIDADE']; ?></td>
-                            <td style="text-align:center;"><?php echo $item['MIN_DTAHORAINSERCAO']; ?></td>
-                            <td style="text-align:center;"><?php echo $item['MAX_DTAHORAINSERCAO']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="panel">
-        <h3>JOB'S</h3>
-        <div class="table-container">
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="text-align:center;">JOB</th>
-                        <th style="text-align:center;">SETOR</th>
-                        <th>TITULO</th>
-                        <th style="text-align:center;">PARADO</th>
-                        <th style="text-align:center;">FALHOU</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if (isset($dataJobs) && is_array($dataJobs)) {
-                        foreach ($dataJobs as $job) {
-                            echo '<tr>';
-                            echo '<td style="text-align:center;">' . $job['JOB'] . '</td>';
-                            echo '<td style="text-align:center;">' . $job['SETOR'] . '</td>';
-                            echo '<td>' . $job['TITULO'] . '</td>';
-                            echo '<td style="text-align:center;">' . $job['PARADO'] . '</td>';
-                            echo '<td style="text-align:center;">' . $job['FALHOU'] . '</td>';
-                            echo '</tr>';
-                        }
-                    } else {
-                        echo '<tr><td colspan="3">Nenhum job encontrado.</td></tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>
-
         </div>
 
     <script>
