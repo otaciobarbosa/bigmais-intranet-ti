@@ -1,21 +1,77 @@
 body {
     font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    transition: opacity 1.5s ease-in;
     background-color: #231F20;
 }
 
-.navbar {
-    position: fixed;
-    top: 0;
+/* CSS para o container que simula o comportamento do Bootstrap 3 */
+.container {
     width: 100%;
-    background-color: #730E20;
-    padding: 10px 20px;
-    color: white;
-    z-index: 1000;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
+
+  .form-group {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Espaçamento entre o input e o botão */
+  }
+
+/* Larguras máximas do container para diferentes tamanhos de tela */
+@media (min-width: 768px) {
+    .container {
+        max-width: 750px; /* Largura máxima para sm */
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 970px; /* Largura máxima para md */
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1170px; /* Largura máxima para lg */
+    }
+}
+
+/* Para dispositivos extra grandes */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px; /* Largura máxima para xl */
+    }
+}
+
+
+ .navbar {
+     position: fixed;
+     top: 0;
+     width: 100%;
+     background-color: #730E20; 
+     padding: 10px 20px;
+     color: white;
+     z-index: 1000;
+     display: flex;
+     justify-content: space-around; 
+ }
+
+ .navbar a {
+     display: flex;
+     align-items: center;
+     color: white;
+     text-decoration: none;
+     margin-right: 20px;
+ }
+
+ .navbar a span {
+     margin-right: 8px;
+ }
+
+ .navbar a:hover {
+     opacity: 0.8;
+ }
 
 .main-content {
     margin-top: 80px;
