@@ -3,7 +3,7 @@
 include 'conn_oracle.php';
 try {
     if (!$stmt = oci_parse($oraConn, "SELECT d.LOJA,
-                                           'R$ ' || TO_CHAR(d.DTAMOVIMENTO, 'DD/MM/YYYY HH24:MI:SS') AS DTAMOVIMENTO,
+                                           TO_CHAR(d.DTAMOVIMENTO, 'DD/MM/YYYY HH24:MI:SS') AS DTAMOVIMENTO,
                                            'R$ ' || TO_CHAR(nvl(d.VLR_PDV,0), '999G999G999D99', 'NLS_NUMERIC_CHARACTERS='',.''') AS VLR_PDV,
                                            'R$ ' || TO_CHAR(nvl(d.VLR_ABC,0), '999G999G999D99', 'NLS_NUMERIC_CHARACTERS='',.''') AS VLR_ABC,
                                            'R$ ' || TO_CHAR(nvl(d.VLR_FISCAL,0), '999G999G999D99', 'NLS_NUMERIC_CHARACTERS='',.''') AS VLR_FISCAL,

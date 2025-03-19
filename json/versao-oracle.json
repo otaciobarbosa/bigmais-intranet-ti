@@ -1,0 +1,41 @@
+{
+    "Versão": "Database",
+    "Detalhes": [
+      {
+        "Nome": "Oracle 19c",
+        "Versão": "19.10.0.0",
+        "Homologada": "21.01",
+        "Suporte ERP": "Abril/2027",
+        "Suporte Estendido": "Indefinido"
+      },
+      {
+        "Nome": "Oracle 12R2",
+        "Versão": "12.2.0.1",
+        "Homologada": "17.01",
+        "Suporte ERP": "Março/2022",
+        "Término Suporte": "Janeiro/2025 (24.01)"
+      },
+      {
+        "Nome": "Oracle 12R1",
+        "Versão": "12.1.0.2",
+        "Homologada": "17.01",
+        "Suporte ERP": "Julho/2022",
+        "Término Suporte": "Janeiro/2025 (24.01)"
+      },
+      {
+        "Nome": "Oracle 11R2",
+        "Versão": "11.2.0.4",
+        "Homologada": "Setembro/2012",
+        "Suporte ERP": "Dezembro/2020",
+        "Término Suporte": "Julho/2024 (23.07)"
+      },
+      {
+        "Nome": "Oracle 10R2",
+        "Versão": "10.2.0.4",
+        "Homologada": "Julho/2006",
+        "Suporte ERP": "Julho/2013",
+        "Término Suporte": "Maio/2017"
+      }
+    ]
+  }
+  

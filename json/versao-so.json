@@ -1,0 +1,24 @@
+{
+  "Plataformas": [
+    {
+      "Nome": "Linux x86 64-bit",
+      "Distribuição": "Ver Oracle Database Preinstallation"
+    },
+    {
+      "Nome": "Linux 64-bit for AMD",
+      "Distribuição": "Ver Oracle Database Preinstallation"
+    },
+    {
+      "Nome": "AIX-Based Systems (64-bit)",
+      "Distribuição": "Ver Oracle Database Preinstallation"
+    },
+    {
+      "Nome": "HP-UX (64-bit)",
+      "Distribuição": "Ver Oracle Database Preinstallation"
+    },
+    {
+      "Nome": "Windows Server x86 64-bit",
+      "Distribuição": "** Não recomendado **"
+    }
+  ]
+}

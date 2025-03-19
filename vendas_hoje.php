@@ -3,6 +3,7 @@ $urlIntegracaoVendas = "http://192.168.0.210/painel/integracao_vendas.php";
 $urlDuplicidadePdvDocto = "http://192.168.0.210/painel/duplicidade_pdv_docto.php";
 $urlVendaLojaDia = "http://192.168.0.210/painel/venda_loja_dia.php";
 $urlJobs = "http://192.168.0.210/painel/jobs.php"; 
+$urlSchedulers = "http://192.168.0.210/painel/schedulers.php"; 
 
 function getDataFromApi($url) {
     $response = @file_get_contents($url);
@@ -26,6 +27,10 @@ $dataVendaLojaDia = getDataFromApi($urlVendaLojaDia);
 $dataJobs = getDataFromApi($urlJobs); 
 if (!is_array($dataJobs)) {
     $dataJobs = []; 
+}
+$dataSchedulers = getDataFromApi($urlSchedulers); 
+if (!is_array($dataSchedulers)) {
+    $dataSchedulers = []; 
 }
 ?>
 
@@ -78,6 +83,38 @@ if (!is_array($dataJobs)) {
                         }
                     } else {
                         echo '<tr><td colspan="3">Nenhum job encontrado.</td></tr>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <div class="panel">
+        <h3 style="display: flex; align-items: center;">
+          <span class="material-icons" style="margin-right: 8px;">double_arrow</span>
+          SCHEDULER'S
+        </h3>
+        <div class="table-container">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">ULTIMA EXECUÇÃO</th>
+                        <th style="text-align:center;">NOME</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($dataSchedulers) && is_array($dataSchedulers)) {
+                        foreach ($dataSchedulers as $scheduler) {
+                            echo '<tr>';
+                            echo '<td style="text-align:center;">' . $scheduler['LAST_RUN'] . '</td>';
+                            echo '<td style="text-align:center;">' . $scheduler['JOB_NAME'] . '</td>';
+                            echo '<td style="text-align:center;">' . $scheduler['STATUS'] . '</td>';
+                            echo '</tr>';
+                        }
+                    } else {
+                        echo '<tr><td colspan="3">Nenhum scheduler encontrado.</td></tr>';
                     }
                     ?>
                 </tbody>

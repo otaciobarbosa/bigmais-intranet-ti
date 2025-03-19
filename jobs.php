@@ -5,24 +5,20 @@ try {
     if (!$stmt = oci_parse($oraConn, "SELECT job,
        case job
          when 1 then
-          'Importa/Integra Nota Fiscal'
+          'Job: 1 - Importa/Integra Nota Fiscal'
          when 2 then
-          'Integracao do Cupom Fiscal'
-         when 162 then
-          'Importacao de intens da SOCIN para tabelas PDV consinco'
+          'Job: 2 - Integracao do Cupom Fiscal'
        end as titulo,
         case job
          when 1 then
           'FISCAL'
          when 2 then
           'FISCAL'
-         when 162 then
-          'COMERCIAL'
        end as setor,
        BROKEN as parado,
        FAILURES as falhou
   from all_jobs a
- where a.JOB in (1, 2, 162)")) {
+ where a.JOB in (1, 2 )")) {
         $e = oci_error($oraConn);
         throw new Exception("Erro ao preparar consulta - " . $e['message']);
     }

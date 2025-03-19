@@ -59,61 +59,25 @@ if (!is_array($dataJobs)) {
             <div class="panel" style="margin-top:20px;">
                 <form id="dataForm" method="GET" action="vendas_data.php">
                     <div class="form-group">
-                        <input 
-                            type="date" 
-                            id="dataInput" 
-                            name="data" 
-                            required 
-                            class="MuiInputBase-input MuiOutlinedInput-input" 
-                            style="border: 1px solid rgba(0, 0, 0, 0.23); border-radius: 4px; padding: 8px;"
-                        />
-                        <button 
-                            type="submit" 
-                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary"
-                            style="padding: 8px 16px; border-radius: 4px;"
-                        >
-                            Pesquisar
-                        </button>
-                    </div>
+                    <input 
+                        type="date" 
+                        id="dataInput" 
+                        name="data" 
+                        required 
+                        class="MuiInputBase-input MuiOutlinedInput-input" 
+                        style="border: 1px solid rgba(0, 0, 0, 0.23); border-radius: 4px; padding: 8px;"
+                        value="<?php echo isset($_GET['data']) ? $_GET['data'] : ''; ?>"
+                    />
+                    <button 
+                        type="submit" 
+                        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                        style="padding: 8px 16px; border-radius: 4px;"
+                    >
+                        Pesquisar
+                    </button>
+                </div>
                 </form>
             </div>
-    <div class="panel">
-        <h3 style="display: flex; align-items: center;">
-          <span class="material-icons" style="margin-right: 8px;">double_arrow</span>
-          JOB'S
-        </h3>
-        <div class="table-container">
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th style="text-align:center;">JOB</th>
-                        <th style="text-align:center;">SETOR</th>
-                        <th>TITULO</th>
-                        <th style="text-align:center;">PARADO</th>
-                        <th style="text-align:center;">FALHOU</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if (isset($dataJobs) && is_array($dataJobs)) {
-                        foreach ($dataJobs as $job) {
-                            echo '<tr>';
-                            echo '<td style="text-align:center;">' . $job['JOB'] . '</td>';
-                            echo '<td style="text-align:center;">' . $job['SETOR'] . '</td>';
-                            echo '<td>' . $job['TITULO'] . '</td>';
-                            echo '<td style="text-align:center;">' . $job['PARADO'] . '</td>';
-                            echo '<td style="text-align:center;">' . $job['FALHOU'] . '</td>';
-                            echo '</tr>';
-                        }
-                    } else {
-                        echo '<tr><td colspan="3">Nenhum job encontrado.</td></tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
     <div class="panel">
         <h3 style="display: flex; align-items: center;">
           <span class="material-icons" style="margin-right: 8px;">double_arrow</span>
