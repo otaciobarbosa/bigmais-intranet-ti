@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Tela
+clear
+cal
+echo -ne "Hora Atual ->"
+echo -ne " "
+tput cup 10 0;echo -ne "Pressione Crtl + C para sair"
+
+
+
+# Funcao
+
+hora () {
+data=`date | cut -c 12-19`
+tput cup 8 15; echo -ne $data
+sleep 1
+hora
+}
+hora

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-TERM=vt100
-cd /u/cobol/mflmf
-./mflmadm
-TERM=linux
-cd /u

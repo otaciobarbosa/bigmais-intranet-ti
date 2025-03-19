@@ -1,0 +1,32 @@
+cd /u/rede
+rm -rf backs
+mkdir /u/rede/backs
+mkdir /u/rede/backs/arq
+mkdir /u/rede/backs/arqa
+mkdir /u/rede/backs/arqh
+mkdir /u/rede/backs/arqp
+mkdir /u/rede/backs/sist
+mkdir /u/rede/backs/sist/arq
+mkdir /u/rede/backs/sist/arqa
+mkdir /u/rede/backs/sist/arqb
+mkdir /u/rede/backs/sist/arqc
+mkdir /u/rede/backs/sist/arqd
+mkdir /u/rede/backs/sist/arqf
+mkdir /u/rede/backs/sist/arqi
+mkdir /u/rede/backs/sist/arqm
+mkdir /u/rede/backs/sist/arqp
+mkdir /u/rede/backs/sist/arqv
+cd /u/sistema/bigmais/arq; rar a -y /u/rede/backs/arq/arq
+cd /u/sistema/bigmais/arqa; rar a -y /u/rede/backs/arqa/arqa
+cd /u/sistema/bigmais/arqh; rar a -y /u/rede/backs/arqh/arqh
+cd /u/sistema/bigmais/arqp; rar a -y /u/rede/backs/arqp/arqp
+cd /u/sistema/bigmais/sist/arq; rar a -y /u/rede/backs/sist/arq/arq
+cd /u/sistema/bigmais/sist/arqa; rar a -y /u/rede/backs/sist/arqa/arqa
+cd /u/sistema/bigmais/sist/arqb; rar a -y /u/rede/backs/sist/arqb/arqb
+cd /u/sistema/bigmais/sist/arqc; rar a -y /u/rede/backs/sist/arqc/arqc
+cd /u/sistema/bigmais/sist/arqd; rar a -y /u/rede/backs/sist/arqd/arqd
+cd /u/sistema/bigmais/sist/arqf; rar a -y /u/rede/backs/sist/arqf/arqf
+cd /u/sistema/bigmais/sist/arqi; rar a -y /u/rede/backs/sist/arqi/arqi
+cd /u/sistema/bigmais/sist/arqm; rar a -y /u/rede/backs/sist/arqm/arqm
+cd /u/sistema/bigmais/sist/arqp; rar a -y /u/rede/backs/sist/arqp/arqp
+cd /u/sistema/bigmais/sist/arqv; rar a -y /u/rede/backs/sist/arqv/arqv

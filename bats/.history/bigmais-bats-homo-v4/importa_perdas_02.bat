@@ -1,1 +1,0 @@
-xcopy  /Y \\192.168.0.240\hd\trb\peprod.txt \\192.168.0.240\hd\perdas\02

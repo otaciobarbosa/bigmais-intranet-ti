@@ -1,0 +1,1 @@
+find /u/sistema/bigmais/sist/sped/ne -type f -atime +90 -print -exec rm -f {} \;

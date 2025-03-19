@@ -1,0 +1,44 @@
+while
+    clear
+    stty -isig
+    echo [37m[0m
+    echo [31m[1m 
+    echo [37m[0m
+    echo "                             Menu de conversao de arquivos"
+    echo "                             xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    tput rmso
+    echo [31m[1m 
+    echo [37m[0m
+    echo [1m "                       Net Solutions - Sanderson [0m "
+    echo [31m[1m 
+    echo [37m[0m
+    echo "                         1  -   Converte Taxas e Vendas"
+    echo "                         2  -   Converte Produtor Rural - apos planilha"
+    echo "                         3  -   Converte Cheques"
+    echo "                        10  -   Fim" 
+    echo [31m[1m 
+    echo [37m[0m
+    echo -n "                        Escolha a[5m [32m OPCAO  :[37m[0m " 
+    do
+	read opcao
+        case $opcao in
+	    1)  clear 
+		cd /u/bats
+		sh conv_taxasecompras.sh ;;
+	    2) 	clear 
+		cd /u/bats
+		sh conv_prodrural.sh ;;
+            3)  clear
+                cd /u/bats
+                sh conv_cheques.sh ;;
+           10) clear
+		tput smso
+                echo "                             Net Solutions                                    "
+                echo "                                                                              "
+                echo "                         SANDERSON  (033) 8411-0201                           "  [37m
+	
+		tput rmso
+		stty sane    
+		exit ;;
+	esac 
+done

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source /etc/profile
+umask 000
+
+TESTA=`ps ax | grep -v 'grep' | grep -c 'node_apps'`
+
+if [ $TESTA = 0 ]; then
+    source $HOME/.bashrc
+    cd /u/node_apps
+    pm2 start pm2.json
+fi
+

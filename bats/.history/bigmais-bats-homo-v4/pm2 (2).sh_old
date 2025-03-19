@@ -1,9 +1,0 @@
-#!/bin/bash
-
-source /etc/profile
-source $HOME/.bashrc
-
-if [ ! -d "/proc/$(cat $HOME/.pm2/pm2.pid)" ]; then
-    cd /u/node_apps
-    pm2 start pm2.json
-fi

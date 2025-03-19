@@ -1,0 +1,42 @@
+clear
+if [ $USER != root ]; then 
+   if [ $USER != fim ]; then
+      tput smso
+      echo 'VOCE NAO ESTA COM O USUARIO ROOT OU FIM, ACESSO NEGADO !!!'
+      tput rmso
+      exit
+   fi      
+fi
+
+while true
+clear
+tput cup 01 01 
+    tput smso
+    echo [31m[47m[1m"                Verifique se nao ha outro usuario [5m TRABALHANDO              "[40m[0m 
+    tput rmso
+    echo [37m[0m
+    w 
+    tput cup 22 32
+    echo "S (sim)  N (nao)"
+    tput cup 24 30
+    echo -n "Posso Encerrar <S/N>"
+    do
+    tput cup 24 51
+    read opcao
+    case $opcao in
+	    S|s|N|n) break ;;
+
+   esac
+    tput cup 24 51
+    echo "                            "
+done
+
+
+if [ $opcao = S -o $opcao = s ];then
+   clear
+   shutdown -h now
+fi
+
+
+
+ 

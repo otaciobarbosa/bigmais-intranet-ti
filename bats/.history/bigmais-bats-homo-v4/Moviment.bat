@@ -1,1 +1,0 @@
-xcopy C:\ServComNET\Saida\*.* \\192.168.0.240\pessoal\EXPORTACAO_PONTO\ServComNET\Saida

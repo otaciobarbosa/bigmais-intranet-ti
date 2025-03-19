@@ -1,0 +1,5 @@
+2023-03-19 23:30:01<br/> Iniciando Atualização...<br/>limpa tabela integracao: 9760 apagadas.<br> WHERE:  id_campo = 52 
+  AND data_venda = CURRENT_DATE
+  AND numero_loja IN ( 1, 2, 4, 5, 8, 9 ) 
+  AND numero_pdv > 0 
+  AND numero_cupom IS NOT NULL<br/>CALL CONSINCO.SP_REM_DUP_FID('i'): executado corretamente. <br>CALL CONSINCO.SP_REM_DUP_MFID(sysdate): executado corretamente. <br>CALL CONSINCO.SP_IMP_MFID(sysdate): executado corretamente. <br>

@@ -1,7 +1,0 @@
-#!/bin/sh
-clear
-echo Informe a data desejada:\c
-read opcao
-ls  /u/rede/RETAG/$opcao/CU* /u/rede/RETAG/$opcao/Z*
-read nada
-echo T E C L E  E N T E R !!

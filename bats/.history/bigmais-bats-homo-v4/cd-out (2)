@@ -1,8 +1,0 @@
-clear
-if [ $USER != root ]; then
-   tput smso
-   echo 'VOCE NAO ESTA COM O USUARIO ROOT, ACESSO NEGADO !!!'
-   tput rmso
-   exit
-fi
-umount /dev/cdrom

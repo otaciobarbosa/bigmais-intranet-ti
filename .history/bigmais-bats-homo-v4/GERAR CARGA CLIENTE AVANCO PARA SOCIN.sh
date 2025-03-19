@@ -1,0 +1,2 @@
+ echo  "codigo_cliente;cpf;insc_estadual;nome;endereco;bairro;cep;cidade;estado;telefone" > novo_cliente.csv
+ cat cliente.txt |cut -c2-8,10-21,22-35,36-70,71-105,106-125,126-133,134-153,154-155,156-167  --output-delimite=';' >>  novo_cliente.csv

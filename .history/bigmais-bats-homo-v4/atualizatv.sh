@@ -1,0 +1,1 @@
+cat /u/rede/PGR01/cadtxt.004 |cut -c 1-6,8-29,32-34,35-36 --output-delimite=";"  |sed 's/\;/C\;/' |grep -f /u/bats/friospainel.lst |sed 's/\;/\,/3' |sed 's/\;00/\;/1'|sed 's/\;0/\;/1'|awk -F";" '{printf "%s \n",$2 ";R$ " $3}'|sed 's/       \;/\;/'|sed 's/      \;/\;/'|sed 's/     \;/\;/'|sed 's/   \;/\;/'|sed 's/  \;/\;/' |sort  > /var/www/htdocs/painel/precos.txt
