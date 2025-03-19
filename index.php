@@ -1,28 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
-
-<head>
-    <?php include 'custom/header.php'; ?>
-</head>
+<html lang="pt-br" translate="no">
+<?php include 'head.php'; ?>
 
 <body>
-    <?php include 'custom/navbar.php'; ?>
-    <div class="content-inner">
-        <header class="page-header">
-            <div class="container-fluid">
-                <div class="no-margin-bottom">
-                   
-                </div>
-            </div>
-        </header>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-
-                </div>
-            </div>
-        </div>
-        <?php include 'custom/footer.php'; ?>
+    <div class="container-fluid">
+        <?php include 'navbar.php'; ?>
+    </div>
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>

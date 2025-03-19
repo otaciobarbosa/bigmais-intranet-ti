@@ -1,12 +1,13 @@
 <?php
-$servername = "192.168.0.210";
-$username = "root";
-$password = "bigmais.123";
-$dbname = "super";
+ $usuario ='consinco';
+ $senha = 'consinco';
+ $host = '192.168.0.245/bigmais';
+ $porta = '1521';
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-
+ if(!$con = oci_connect($usuario,$senha,"$host:$porta")){
+    $e = oci_error();
+    throw new Exception("Erro ao conectar ao servidor usando a extensão OCI - " . $e['message']);
+    oci_close($con);
+  } 
+  
 ?>
