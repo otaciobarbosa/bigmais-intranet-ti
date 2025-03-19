@@ -35,15 +35,15 @@
             </span>
             <ul class="list-unstyled">
               <li>
-                <a href="../intra.php"> 
-                  <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                  Voltar 
+                <a href="cadastro.php"> 
+                  <i class="fa fa-circle-o" aria-hidden="true"></i>
+                  CADASTRO
                 </a>
               </li>
               <li>
-                <a href="importacsv.php">
-                  <i class="fa fa-circle-o" aria-hidden="true"></i> 
-                  IMPORTAR CSV
+                <a href="permissoes.php"> 
+                  <i class="fa fa-circle-o" aria-hidden="true"></i>
+                  PERMISSOES
                 </a>
               </li>
             </ul>
