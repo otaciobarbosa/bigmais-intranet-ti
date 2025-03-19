@@ -1,12 +1,12 @@
-<?php
-$servername = "192.168.0.251";
-$username = "econect";
-$password = "123456";
-$dbname = "concentrador";
+<?php  
+$bigServername = "192.168.0.210";
+$bigUsername = "root";
+$bigPassword = "bigmais.123";
+$bigBbname = "bigmais_agenda";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($bigServername, $bigUsername, $bigPassword, $bigBbname);
 
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 ?>
