@@ -1,5 +1,23 @@
-rename -v 'y/ /_/' "$1" *
 rename 'y/A-Z/a-z/' *
+rename 'y/á/a/' *
+rename 'y/à/a/' *
+rename 'y/ã/a/' *
+rename 'y/â/a/' *
+rename 'y/é/e/' *
+rename 'y/è/e/' *
+rename 'y/ê/e/' *
+rename 'y/í/i/' *
+rename 'y/ì/i/' *
+rename 'y/î/i/' *
+rename 'y/ó/o/' *
+rename 'y/ò/o/' *
+rename 'y/ô/o/' *
+rename 'y/õ/o/' *
+rename 'y/ú/u/' *
+rename 'y/ù/u/' *
+rename 'y/û/u/' *
+rename 'y/ü/u/' *
+rename 'y/ç/c/' *
 rename 'y/(/_/' *
 rename 'y/)/_/' *
 rename 'y/-/_/' *
@@ -7,3 +25,4 @@ rename 'y/_____/_/' *
 rename 'y/____/_/' *
 rename 'y/___/_/' *
 rename 'y/__/_/' *
+rename -v 'y/ /_/' "$1" *
