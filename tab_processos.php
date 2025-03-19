@@ -30,22 +30,18 @@
               while (($row = oci_fetch_assoc($stmt)) != false) {               
                 $data_logon = $row['LOGON_TIME'];
                 echo "<tr>";                
-                  echo "<td>" . $row['SID'] . "</td>";
-                  echo "<td>" . $row['PROGRAM'] . "</td>";
-                  echo "<td>" . $row['USERNAME'] . "</td>";              
-                  echo "<td>" . $row['MACHINE'] . "</td>";
                   echo "<td>" . gmdate('H:i:s', $data_logon) . "</td>";
-                  
-				  $tempo = $row['LOGON_TIME'];				  				  
-				  
-				  if($tempo >= 6000){
-					  echo "<td><img src='img/vermelha.png' style='height:30px;'></td>"; 
-					  }else if($tempo < 6000 && $tempo >= 600){
-					  echo "<td><img src='img/amarelo.png' style='height:30px;'></td>";
-					  }else{
-					  echo "<td><img src='img/verde.png' style='height:30px;'></td>";
-					  };
-                  echo "</tr>";
+                  echo "<td>" . $row['SID'] . "</td>";
+                  echo "<td>" . $row['PROCESS'] . "</td>";
+                  echo "<td>" . $row['PROGRAM'] . "</td>";
+                  echo "<td>" . $row['USUARIO'] . "</td>";
+                  echo "<td>" . $row['USERNAME'] . "</td>";
+                  echo "<td>" . $row['COMMAND'] . "</td>";                  
+                  echo "<td>" . $row['OSUSER'] . "</td>";                  
+                  echo "<td>" . $row['MACHINE'] . "</td>";
+                  echo "<td>" . $row['OBJECT_NAME'] . "</td>";
+                  if($row['LOGON_TIME'] >= 600){echo "<td><img src='img/vermelha.png' style='width:40px;'></td>"; }else{ echo "<td><img src='img/verde.png' style='width:40px;'></td>";};
+                echo "</tr>";
               };
           
             }catch(Exception $e){

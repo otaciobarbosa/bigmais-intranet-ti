@@ -28,7 +28,7 @@
         }
         
         while (($row = oci_fetch_assoc($stmt)) != false) {
-            echo "<tr class='size' style='padding:5px;line-height:10px;'>";    
+            echo "<tr class='size'>";    
             
             switch ($row['LOJA']) {
                 
@@ -61,7 +61,7 @@
             echo "<td>" . $row['HORA'] . "</td>";
             echo "<td>" . $row['TOTAL'] . "</td>";
             echo "<td>" . gmdate('H:i:s', $row['ULTIMAVENDA']) . "</td>";
-            if($row['ULTIMAVENDA'] >= 1800){echo "<td style='padding:0px;'><img src='img/vermelha.png' style='width:30px;'></td>"; }else{ echo "<td><img src='img/verde.png' style='width:40px;'></td>";};
+            if($row['ULTIMAVENDA'] >= 1800){echo "<td><img src='img/vermelha.png' style='width:40px;'></td>"; }else{ echo "<td><img src='img/verde.png' style='width:40px;'></td>";};
             echo "</tr>";
         };
         
