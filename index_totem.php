@@ -15,7 +15,7 @@
 			.stloja{color:#999;}
 			.nomeserver h4{font-size:0.8em !important;}	
 			html{background-image: url(img/fundo.png);background-size:cover;padding:0.5%;}
-			body{height:95vh;border-radius:10px;}
+			body{height:76vh;border-radius:10px;}
 			table tr td, table tr th {max-width: 10vw;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 			
 			table{width:100%;}    
@@ -24,7 +24,8 @@
 			
 			thead{background-color:#0074cc; color:white;}    
 			
-			.host{font-weight:700;font-size:1.1em;vertical-align:bottom;width:98%;    
+			.host{font-weight:700;font-size:1.1em;vertical-align:bottom;width:95%;
+			margin: 0 auto;
 			background: rgb(255,255,255);
 			background: linear-gradient(90deg, rgba(255,255,166,0) 0%, rgba(205,227,255,0.9444152661064426) 100%);
 			border-radius:10px;    
@@ -138,11 +139,7 @@
 			border-radius: 3px;
 			text-align: center;}
 			
-			@media (min-width:1300px){ 			
-			.coluna{width:185px;}
-			.size{font-size:16px;
-			.host{font-weight:700;font-size:0.7em;}    
-			}
+		
 			
 			.fundo_disco{font-size:13px;background-color:#0074cc;color:#FFF;padding:2px 10px;border-radius:3px;margin-right:5px;}	
 			
@@ -154,16 +151,16 @@
 		
 	</head>  
 	<body>
-		<div style="width:53%;">  
+		<div style="width:98%;margin:0 auto;">  
 		<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9">
 		<center><h4 style="padding-top:10px;font-weight:700;">INTEGRAÇÃO DE VENDAS EM LOJAS (por tempo)</h4></center>
-			<div class="table-responsive" style="overflow-y: auto;height:450px;">
+			<div class="table-responsive" style="overflow-y: auto;height:395px;">
 				<div class="panel panel-default">
 					<table class="table table-bordered table-hover table-condensed">
 						<thead>
 							<tr>
-								<th>LOJA</th>
+								<th width="30%">LOJA</th>
 								<th>HORA</th>
 								<th>CUPONS</th>
 								<th>INTEGRACAO</th>
@@ -175,10 +172,9 @@
 				</div>
 			</div>
 			</div>
-			<div class="col-md-4">	
-			
-			<center><h4 style="padding-top:10px;font-weight:700;">Portas em uso Server 0.210</h4></center>
-			<div class="table-responsive" style="overflow-y: auto;height:450px;">
+			<div class="col-md-3">			
+			<center><h4 style="padding-top:10px;font-weight:700;">Portas em uso - 0.210</h4></center>
+			<div class="table-responsive" style="overflow-y: auto;height:395px;">
 				<div class="panel panel-default">
 					<table class="table table-bordered table-hover table-condensed">
 						<thead>
@@ -194,32 +190,12 @@
 			
 			</div>
 			</div>
-			</div>
+			<div class="row">			
 			
-			<div style="width:53%;">  	
-			<center><h4 style="font-weight:700;">PROCESSOS ORACLE</h4></center>
-			<div class="table-responsive" style="overflow-y: auto;height:270px;">
-				<div class="panel panel-default">
-					<table class="table table-bordered table-hover table-condensed">
-						<thead>
-							<tr>
-								<th>SID</th>
-								<th>PROGRAM</th>	
-								<th>USERNAME</th>	
-								<th>MACHINE</th>	
-								<th>TEMPO</th>	
-								<th>STATUS</th>						
-							</tr>
-						</thead>
-						<tbody id="tab_processos"></tbody>
-					</table>
-				</div>
-			</div> 
-		</div> 			
-	<hr>
-	
-    <div id="tabela_content2" style="width:45%;position:fixed;right:20px;top:20px;">
-		<div class="row">
+			<div class="col-md-12">			
+			
+			<div id="tabela_content2">
+			<div class="row">
             <ul class="host">
                 <center><h4 style="padding-top:10px;font-weight:700;">STATUS DE SERVIÇOS</h4></center>
                 <li><img src="img/icon_server.ico" style="width:40px;"> 192.168.0.225            
@@ -256,11 +232,39 @@
 						<li><span id="ServBackUp_142"></span> ServBackUp_142</li>            
 					</ul>
 				</div>
+			
+			</div>	
+			</div>	
+	<hr>
+	
+    
 			</div>
 			
-			<div style="width:98%;position:absolute;bottom:40px;right:15px;">  	
+			<div style="width:100%;">  	
+			<center><h4 style="font-weight:700;">PROCESSOS ORACLE</h4></center>
+			<div class="table-responsive" style="overflow-y: auto;height:270px;">
+				<div class="panel panel-default">
+					<table class="table table-bordered table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>SID</th>
+								<th>PROGRAM</th>	
+								<th>USERNAME</th>	
+								<th>MACHINE</th>	
+								<th>TEMPO</th>	
+								<th>STATUS</th>						
+							</tr>
+						</thead>
+						<tbody id="tab_processos"></tbody>
+					</table>
+				</div>
+			</div> 
+		</div> 
+			
+			
+			<div style="">  	
 				<center><h3 style="font-weight:700;"> CONCENTRADORES </h3></center>
-				<div class="panel panel-default" id="servidores"></div> 
+				<div class="panel panel-default" id="servidores" style="width:95%;margin:0 auto;"></div> 
 			</div> 
 			
 			
@@ -464,7 +468,7 @@
 					
 					$.each(data, function(index, item) {
 						
-						if (['251', '1', '2', '4', '5', '8', '9'].includes(item.controle_loja)) {
+						if (['251', '1', '2'].includes(item.controle_loja)) {
 							
 							const matches = item.disco.match(/(\d+)%/);
 							disco = matches[1];
@@ -536,11 +540,93 @@
 							</li>\
 							</ul></div>';
 							
+						}											
+						
+					});	
+					
+					$("#servidores").append('<div class="row"><div class="card-deck" style="display: flex;">'+ html +'</div></div>'); 
+					
+					html = '';
+					
+					$.each(data, function(index, item) {
+						
+						if (['4', '5', '8', '9'].includes(item.controle_loja)) {
+							
+							const matches = item.disco.match(/(\d+)%/);
+							disco = matches[1];
+							
+							const progressBar = document.querySelector(".progress-bar");
+							
+							if(disco > 95)
+							{
+								element_bar_disco = "danger";
+								}else{
+								element_bar_disco = "success";
+							}
+							
+							const string = item.disco;
+							const regex = /(\d+G)/;
+							const match = string.match(regex);
+							
+							if (match && match.length > 0) {
+								var tam_disco = match[0].toLowerCase();
+							}
+							
+							if(item.banco !== null){
+								const matches = item.banco.match(/(\d+)%/);
+								banco = matches[1];
+								}else{
+								banco = 0;
+							}
+							
+							if(item.banco == null){
+								var prog_banco = "display:none;";
+								}else{
+								var prog_banco = "display:flex;";
+								
+								const string = item.banco;
+								const regex = /(\d+G)/;
+								const match = string.match(regex);
+								
+								if (match && match.length > 0) {
+									var tam_banco = match[0].toLowerCase();
+								}
+							}
+							
+							if(banco > 95)
+							{
+								element_bar_banco = "danger";
+								}else{
+								element_bar_banco = "success";
+							}
+							
+							const dtOriginal = item.controle_log;
+							
+							const dat = new Date(dtOriginal);
+							
+							const dtFormatada = dat.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric' });							
+							
+							html += '<div class="col-md-3" style="padding:3px;"><ul class="list-group">\
+							<li class="list-group-item"><strong>'+ item.desc_server +'</strong><br>192.168.<strong>'+item.server+'</strong></li>\
+							<li class="list-group-item">\
+							<div class="d-flex align-items-center prog_disco" style="display: flex;justify-content: space-around;">\
+							<i class="fa-solid fa-server" style="margin-top:4px;"></i>\
+							<div class="progress" style="width:85%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_disco+'" role="progressbar" aria-valuenow="'+disco+'" aria-valuemin="0" aria-valuemax="100" style="width: '+disco+'%;">'+disco+'%</div></div>\
+							<span class="desc_disco">Disco: '+ tam_disco +'b</span>\
+							</div>\
+							<div class="d-flex align-items-center" style="'+ prog_banco +';justify-content: space-around;">\
+							<i class="fa-solid fa-database" style="margin-top:4px;"></i>\
+							<div class="progress" style="width:85%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_banco+'" role="progressbar" aria-valuenow="'+ banco +'" aria-valuemin="0" aria-valuemax="100" style="width: '+ banco +'%;">'+ banco +'%</div></div>\
+							<span class="desc_banco">Banco: '+ tam_banco +'b / '+item.desc_banco+'</span>\
+							</div>\
+							</li>\
+							</ul></div>';
 							
 						}											
 						
-					});						
-					$("#servidores").append('<div class="card-deck" style="display: flex;">'+ html +'</div>'); 
+					});	
+					
+					$("#servidores").append('<div class="row"><div class="card-deck" style="display: flex;">'+ html +'</div></div>'); 
 				}
 			});
 		}			
