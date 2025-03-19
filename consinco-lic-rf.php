@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+<?php
  include 'conexao-consinco.php';
  include 'query-consinco-lic-rf.php';
 ?>

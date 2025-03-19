@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("Location: index.php");
+    exit;
+}
+?>
 <div class="navbar">
     <!-- Link para Home -->
     <a href="index.php">
@@ -15,4 +22,4 @@
         Vendas por Data
     </a>
 
-</div> 
+</div>

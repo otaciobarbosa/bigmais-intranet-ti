@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+<?php
 include 'data/conexao.php';
 $tmpData = $_GET['data'];
 $loja = $_GET['loja'];

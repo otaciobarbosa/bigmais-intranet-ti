@@ -1,21 +1,25 @@
+<?php
+session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("Location: index.php");
+    exit;
+}
+?>
 <?php 
 $oraServername = "192.168.0.245/bigmais";
 $oraUsername   = "consinco";
 $oraPassword   = "consinco";
 $oraPorta      = "1521";
 
-// Conexão com o banco de dados
 if (!$oraConn = oci_connect($oraUsername, $oraPassword, "$oraServername:$oraPorta")) {
     $e = oci_error();
     throw new Exception("Erro ao conectar ao servidor: " . $e['message']);
 }
 
-// Busca os módulos disponíveis
 $modulosQuery = "SELECT SEQMODULO, DESCRICAO FROM BIGMAIS.SSO_MODULE ORDER BY DESCRICAO";
 $modulosStid = oci_parse($oraConn, $modulosQuery);
 oci_execute($modulosStid);
 
-// Busca os módulos do usuário
 $query = "SELECT m.SEQMODULO, m.MODULO, m.DESCRICAO 
           FROM bigmais.SSO_MODULE m, bigmais.SSO_MODULE_USER u 
           WHERE m.SEQMODULO = u.SEQMODULO 
@@ -45,7 +49,6 @@ oci_execute($stid);
             <h4 class="mb-0">Usuário: <?php echo $_GET['usuario']; ?> - <?php echo $_GET['nome']; ?></h4>
         </div>
         <div class="card-body">
-            <!-- Select e botão em linha -->
             <div class="d-flex align-items-center gap-2">
                 <label for="moduloSelect" class="me-2 mb-0">Adicionar Módulo:</label>
                 <select id="moduloSelect" class="form-control w-auto">
@@ -56,11 +59,7 @@ oci_execute($stid);
                 </select>
                 <button id="addModulo" class="btn btn-success">Adicionar</button>
             </div>
-
-
             <hr>
-
-            <!-- Tabela de módulos do usuário -->
             <table id="sessionsTable" class="table table-striped table-bordered">
                 <thead class="table-dark">
                     <tr>

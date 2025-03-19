@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("Location: index.php");
+    exit;
+}
+?>
 <?php 
 $oraServername = "192.168.0.245/bigmais";
 $oraUsername   = "consinco";

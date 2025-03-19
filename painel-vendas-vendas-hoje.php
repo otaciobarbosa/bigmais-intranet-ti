@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("Location: index.php");
+    exit;
+}
+?>
 <?php 
 $urlIntegracaoVendas = "http://192.168.0.210/suporte/painel-vendas-integracao-vendas.php";
 $urlDuplicidadePdvDocto = "http://192.168.0.210/suporte/painel-vendas-duplicidade-pdv-docto.php";

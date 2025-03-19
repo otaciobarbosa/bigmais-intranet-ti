@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $text = isset($_POST['text']) ? $_POST['text'] : '';
 
