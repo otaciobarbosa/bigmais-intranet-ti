@@ -1,2 +1,0 @@
-# bigmais-painel
- 
