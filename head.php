@@ -1,23 +1,12 @@
-<meta name="google" content="notranslate">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BIG MAIS SUPERMERCADOS</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+<title>Painel de Monitoramento</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 <style>
 body {
-    background-image: url(img/fundo.png);
-}
-
-td,
-th {
-    text-align: center !important;
-}
-
-thead {
-    background-color: #0074cc;
-    color: white;
+    background: rgb(82,79,240);
+    background: linear-gradient(90deg, rgba(82,79,240,1) 10%, rgba(33,33,164,0.8968837535014006) 100%, rgba(0,212,255,1) 100%);
 }
 </style>
