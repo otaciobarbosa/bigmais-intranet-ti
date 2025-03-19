@@ -39,8 +39,7 @@ if (!is_array($dataSchedulers)) {
 </head>
 
 <body class="container-fluid">
-    <?php include 'custom/navbar.php'; ?>
-    <div class="container">
+    <div class="container-fluid">
         <div class="panel-grid">
             <div class="panel">
                 <div class="row">

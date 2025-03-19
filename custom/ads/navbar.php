@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <div class="navbar-header">
-                        <a href="index.php" class="navbar-brand">
+                        <a href="ads-index.php" class="navbar-brand">
                             <div class="brand-text brand-big">
                                 <strong>
                                     Big Mais Supermercados
@@ -31,15 +31,15 @@
         <nav class="side-navbar">
             <ul class="list-unstyled">
                 <li>
-                    <a href="index.php">
+                    <a href="ads-index.php">
                         <i class="fa fa-circle-o" aria-hidden="true"></i>
                         INICIO
                     </a>
                 </li>
                 <li style="background-color:#000000;color:#FFFFFF;">
-                <span class="heading" >
-                    SOCIN
-                </span>
+                    <span class="heading">
+                        SOCIN
+                    </span>
                 </li>
                 <li>
                     <a href="socin-movimento.php">
@@ -54,9 +54,9 @@
                     </a>
                 </li>
                 <li style="background-color:#000000;color:#FFFFFF;">
-                <span class="heading" >
-                    CONSINCO
-                </span>
+                    <span class="heading">
+                        CONSINCO
+                    </span>
                 </li>
                 <li>
                     <a href="consinco-fechamento.php">

@@ -187,11 +187,11 @@ $oraPorta        = "1521";
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
 
 <head>
-    <?php include 'custom/header.php'; ?>
+    <?php include 'custom/ads/header.php'; ?>
 </head>
 
 <body>
-    <?php include 'custom/navbar.php'; ?>
+    <?php include 'custom/ads/navbar.php'; ?>
     <div class="content-inner">
         <header class="page-header">
             <div class="container-fluid">
@@ -275,7 +275,7 @@ $oraPorta        = "1521";
     </div>
     </div>
     </div>
-    <?php include 'custom/footer.php'; ?>
+    <?php include 'custom/ads/footer.php'; ?>
 </body>
 
 </html>

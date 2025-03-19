@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
 
 <head>
-    <?php include 'custom/header.php'; ?>
+    <?php include 'custom/ads/header.php'; ?>
 </head>
 
-<body style='background-color:#d9d9d9;'>
-    <?php include 'custom/navbar.php'; ?><br><br><br>
-    <div class="container-fluid">
-        <?php
+<body>
+    <?php include 'custom/ads/navbar.php'; ?>
+    <div class="content-inner">
+        <header class="page-header">
+            <div class="container-fluid">
+                <div class="no-margin-bottom">
+                    <?php
 $inconsistencias = "SELECT DISTINCT 
 RF_INCONSISTENC.SEQINCONSIST,
 RF_AUXNOTAMESTR.ROWID,
@@ -65,63 +68,76 @@ $oraPorta        = "1521";
 
  }else{ ?>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">PAINEL DE INCONSISTENCIAS</div>
-            <div class="panel-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>PAINEL DE INCONSISTENCIAS</h3>
 
-                <table class="table table-condensed table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th style='font-size:12px;text-align:center;'>#</th>
-                            <th style='font-size:12px;text-align:center;'>EMP</th>
-                            <th style='font-size:12px;text-align:center;'>NOTA</th>
-                            <th style='font-size:12px;text-align:center;'>SEQ</th>
-                            <th style='font-size:12px;text-align:center;'>SERIE</th>
-                            <th style='font-size:12px;text-align:center;'>E/S</th>
-                            <th style='font-size:12px;text-align:center;'>SEQ</th>
-                            <th style='font-size:12px;text-align:left;'>PESSOA</th>
-                            <th style='font-size:12px;text-align:center;'>EMISSAO</th>
-                            <th style='font-size:12px;text-align:center;'>LANC</th>
-                            <th style='font-size:12px;text-align:center;'>VLRTOTAL</th>
-                            <th style='font-size:12px;text-align:center;'>VS</th>
-                            <th style='font-size:12px;text-align:center;'>MD</th>
-                            <th style='font-size:12px;text-align:center;'>CS</th>
-                            <th style='font-size:12px;text-align:center;'>IO</th>
-                            <th style='font-size:12px;text-align:center;'>IIC</th>
-                            <th style='font-size:12px;text-align:center;'>CGO</th>
-                            <th style='font-size:12px;text-align:left;'>NFECHAVEACESSO</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php  while (($row = oci_fetch_assoc($stmt)) != false) { ?>
-                        <tr>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['SEQINCONSIST']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['NROEMPRESA']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['NOTA']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['SEQNOTA']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['SERIE']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['ENTRADASAIDA']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['SEQPESSOA']; ?></td>
-                            <td style='font-size:12px;text-align:left;'><?php echo $row['PESSOA']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['DTAEMISSAO']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['DTALANCAMENTO']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['VLRTOTAL']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['VERSAO']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['CODMODELO']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['CODSITDOC']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['INDOPERACAO']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['INDIMPORTEXPORTCGO']; ?></td>
-                            <td style='font-size:12px;text-align:center;'><?php echo $row['CGO']; ?></td>
-                            <td style='font-size:12px;text-align:left;'><?php echo $row['NFECHAVEACESSO']; ?></td>
+                            <table class="table table-condensed table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style='font-size:12px;text-align:center;'>#</th>
+                                        <th style='font-size:12px;text-align:center;'>EMP</th>
+                                        <th style='font-size:12px;text-align:center;'>NOTA</th>
+                                        <th style='font-size:12px;text-align:center;'>SEQ</th>
+                                        <th style='font-size:12px;text-align:center;'>SERIE</th>
+                                        <th style='font-size:12px;text-align:center;'>E/S</th>
+                                        <th style='font-size:12px;text-align:center;'>SEQ</th>
+                                        <th style='font-size:12px;text-align:left;'>PESSOA</th>
+                                        <th style='font-size:12px;text-align:center;'>EMISSAO</th>
+                                        <th style='font-size:12px;text-align:center;'>LANC</th>
+                                        <th style='font-size:12px;text-align:center;'>VLRTOTAL</th>
+                                        <th style='font-size:12px;text-align:center;'>VS</th>
+                                        <th style='font-size:12px;text-align:center;'>MD</th>
+                                        <th style='font-size:12px;text-align:center;'>CS</th>
+                                        <th style='font-size:12px;text-align:center;'>IO</th>
+                                        <th style='font-size:12px;text-align:center;'>IIC</th>
+                                        <th style='font-size:12px;text-align:center;'>CGO</th>
+                                        <th style='font-size:12px;text-align:left;'>NFECHAVEACESSO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php  while (($row = oci_fetch_assoc($stmt)) != false) { ?>
+                                    <tr>
+                                        <td style='font-size:12px;text-align:center;'>
+                                            <?php echo $row['SEQINCONSIST']; ?></td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['NROEMPRESA']; ?>
+                                        </td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['NOTA']; ?></td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['SEQNOTA']; ?>
+                                        </td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['SERIE']; ?></td>
+                                        <td style='font-size:12px;text-align:center;'>
+                                            <?php echo $row['ENTRADASAIDA']; ?></td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['SEQPESSOA']; ?>
+                                        </td>
+                                        <td style='font-size:12px;text-align:left;'><?php echo $row['PESSOA']; ?></td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['DTAEMISSAO']; ?>
+                                        </td>
+                                        <td style='font-size:12px;text-align:center;'>
+                                            <?php echo $row['DTALANCAMENTO']; ?></td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['VLRTOTAL']; ?>
+                                        </td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['VERSAO']; ?></td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['CODMODELO']; ?>
+                                        </td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['CODSITDOC']; ?>
+                                        </td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['INDOPERACAO']; ?>
+                                        </td>
+                                        <td style='font-size:12px;text-align:center;'>
+                                            <?php echo $row['INDIMPORTEXPORTCGO']; ?></td>
+                                        <td style='font-size:12px;text-align:center;'><?php echo $row['CGO']; ?></td>
+                                        <td style='font-size:12px;text-align:left;'>
+                                            <?php echo $row['NFECHAVEACESSO']; ?></td>
 
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
 
-            </div>
-        </div>
-        <?php
+                        </div>
+                    </div>
+                    <?php
      }
  
 
@@ -130,10 +146,10 @@ $oraPorta        = "1521";
   oci_close($oraConn);
 }
 ?>
+                </div>
+            </div>
     </div>
-    </div>
-    <?php include 'custom/footer.php'; ?>
-
+    <?php include 'custom/ads/footer.php'; ?>
 </body>
 
 </html>

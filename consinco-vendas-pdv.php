@@ -32,31 +32,33 @@
      oci_close($con);
  }?>
 
-<!doctype html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt">
 
 <head>
-    <?php include 'head.php'; ?>
-    <meta http-equiv="refresh" content="30; url=consinco-vendas-pdv.php">
+    <?php $title = 'Vendas PDV'; ?>
+    <?php include 'custom/head.php'; ?>
 </head>
 
-<body>
-    <?php include 'nav.php'; ?>
-    
-    <div class="container-fluid">
-        <div class="panel panel-default">
-            <div class="panel-body" style="min-height:500px">
-            <table id="painel" class="display">
-                    <thead>
-                        <tr>
-                            <th>LOJA</th>
-                            <th style='text-align:center'>HORA</th>
-                            <th style='text-align:center'>CUPONS</th>
-                            <th style='text-align:center'>TEMPO</th>
-                            <th>STATUS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+<body class="container-fluid">
+    <?php include 'custom/navbar.php'; ?>
+
+    <div class="card">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Vendas PDV</h4>
+        </div>
+        <div class="card-body">
+            <table id="sessionsTable" class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>LOJA</th>
+                        <th style='text-align:center'>HORA</th>
+                        <th style='text-align:center'>CUPONS</th>
+                        <th style='text-align:center'>TEMPO</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php 
                     
                          while (($row = oci_fetch_assoc($stmt)) != false) {
@@ -93,16 +95,16 @@
                             echo "<td style='text-align:center'>" . $row['HORA'] . "</td>";
                             echo "<td style='text-align:center'>" . $row['TOTAL'] . "</td>";
                             echo "<td style='text-align:center'>" . gmdate('H:i:s', $row['ULTIMAVENDA']) . "</td>";
-                            if($row['ULTIMAVENDA'] >= 1800){echo "<td style='padding:0px;text-align:center'><img src='../img/vermelha.png' style='width:30px;'></td>"; }else{ echo "<td><img src='../img/verde.png' style='width:40px;'></td>";};
+                            if($row['ULTIMAVENDA'] >= 1800){echo "<td style='padding:0px;text-align:center'><img src='img/vermelha.png' style='width:30px;'></td>"; }else{ echo "<td><img src='img/verde.png' style='width:40px;'></td>";};
                             echo "</tr>";
                         };
 
                      ?>
-            </div>
         </div>
     </div>
+    </div>
 
-    <?php include 'footer.php'; ?>
+    <?php include 'custom/footer.php'; ?>
 </body>
 
 </html>

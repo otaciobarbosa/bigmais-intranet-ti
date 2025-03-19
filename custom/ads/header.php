@@ -4,9 +4,9 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
-<link rel="stylesheet" href="custom/dist/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="custom/dist/vendor/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="custom/dist/css/fontastic.css">
+<link rel="stylesheet" href="custom/ads/dist/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="custom/ads/dist/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="custom/ads/dist/css/fontastic.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-<link rel="stylesheet" href="custom/dist/css/style.big.css" id="theme-stylesheet">
+<link rel="stylesheet" href="custom/ads/dist/css/style.big.css" id="theme-stylesheet">
 <link rel="shortcut icon" href="img/favicon.ico">
