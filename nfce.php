@@ -9,11 +9,11 @@ $cupom  = $_GET['nfce'];
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
 
 <head>
-    <?php include 'custom/ads/header.php'; ?>
+    <?php include 'custom/header.php'; ?>
 </head>
 
 <body>
-    <?php include 'custom/ads/navbar.php'; ?>
+    <?php include 'custom/navbar.php'; ?>
     <div class="content-inner">
         <header class="page-header">
             <div class="container-fluid">
@@ -162,7 +162,7 @@ $cupom  = $_GET['nfce'];
         <?php } ?>
     </div>
     </div>
-    <?php include 'custom/ads/footer.php'; ?>
+    <?php include 'custom/footer.php'; ?>
 </body>
 
 </html>
