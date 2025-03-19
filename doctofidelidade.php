@@ -1,169 +1,200 @@
 <?php
-header("Refresh: 5");
+$today = date("Y-m-d H:i:s");  
+print($today ."<br/> Iniciando Atualização...<br/>");
 
-try {
-    $oraServername = "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.245)(PORT = 1521))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = bigmais)))";
-    $oraUsername = "consinco";
-    $oraPassword = "consinco";
-
-    $oraConn = oci_connect($oraUsername, $oraPassword, $oraServername);
-
-    if (!$oraConn) {
-        $e = oci_error();
-        throw new Exception("Erro ao conectar ao servidor usando a extensão OCI - " . $e['message']);
-    }
-
-    $stmt = oci_parse($oraConn, "SELECT to_char(A.DTAMOVIMENTO, 'DD/MM/YYYY') AS DTAMOVIMENTO,
-                                        NVL(count(B.SEQDOCTO), 0) AS DOCTOFID
-                                    FROM pdv_docto a
-                                    LEFT JOIN pdv_doctofidelidade b
-                                     on a.seqdocto = b.seqdocto
-                                    LEFT join mfl_doctofiscal c
-                                     on c.numerodf = nvl(a.numeronf, a.numerodf)
-                                    AND c.seriedf = nvl(a.serienf, a.seriedf)
-                                    AND c.nroempresa = a.nroempresa
-                                    AND c.nroserieecf =
-                                        decode(a.nroserieecf,
-                                               'NF',
-                                               'NF',
-                                               a.nroserieecf || to_char(a.dtamovimento, 'yymmdd'))
-                                    LEFT join mfl_doctofidelidade f
-                                     on c.seqnf = f.seqnf
-                                    where a.dtamovimento between trunc(SYSDATE,'MM') and trunc(SYSDATE)-1
-                                    GROUP BY A.DTAMOVIMENTO
-                                    ORDER BY A.DTAMOVIMENTO");
-                                    
-    if (!$stmt) {
-        $e = oci_error($oraConn);
-        throw new Exception("Erro ao preparar consulta - " . $e['message']);
-    }
-
-    if (!oci_execute($stmt)) {
-        $e = oci_error($stmt);
-        throw new Exception("Erro ao executar consulta - " . $e['message']);
-    }
-
-    $data_series = array();
-    $nroempresa_series = array();
-    $doctofid_series = array();
-    $mflfid_series = array();
-
-    while (($row = oci_fetch_assoc($stmt)) != false) {
-        $data_series[]     = $row['DTAMOVIMENTO'];
-        $doctofid_series[] = $row['DOCTOFID'];
-        $mflfid_series[]   = $row['MFLFID'];
-    }
-
-    oci_free_statement($stmt);
-    oci_close($oraConn);
-} catch (Exception $e) {
-    die("ERRO! Detalhes => " . $e->getMessage());
+/*
+ # ----------------------------------------------------
+ # CONECTA BANCO DE DADOS MYSQL.
+ # ----------------------------------------------------
+*/
+$mysqlConn = mysqli_connect("192.168.0.251", "econect", "123456","concentrador");
+ if (!$mysqlConn) {
+  mysqli_close($mysqlConn);
+  print mysqli_connect_error();
 }
+
+/*
+ # ----------------------------------------------------
+ # CONECTA BANCO DE DADOS ORACLE.
+ # ----------------------------------------------------
+*/
+$oraConn = oci_connect("consinco","consinco", "192.168.0.245/bigmais:1521");
+ if (!$oraConn) {
+   $e = oci_error();
+   print "Erro ao conectar ao servidor usando a extensão OCI - " . $e['message'] . "<br/>";
+}
+
+/*
+ # ----------------------------------------------------
+ # LIMPA A TABELA: OB_DADOS_ADICIONAIS_CAPA
+ # ESSA E UMA TABELA TEMPORARIA PARA RECEBER OS DADOS
+ # DA INTEGRAÇÃO.
+ # ----------------------------------------------------
+*/
+if(!$stmt = oci_parse($oraConn,'DELETE FROM BIGMAIS.OB_DADOS_ADICIONAIS_CAPA')){
+  $e = oci_error($stmt);
+  throw new Exception("Erro ao preparar consulta - " . $e['message']);
+  oci_close($oraConn);
+ }
+if(!oci_execute($stmt)){
+  $e = oci_error($con);
+  throw new Exception("Erro ao executar consulta - " . $e['message']);
+  oci_close($con);
+}else{
+  $nrows = oci_num_rows($stmt);
+  echo "limpa tabela integracao: " .$nrows. " apagadas.<br>";
+}
+
+/*
+ # ----------------------------------------------------
+ # BUSCA OS CLIENTES IDENTIFICADOS NO PDV.
+ # ----------------------------------------------------
+*/
+$dataquery = $_GET['dataquery'];
+if(isset($dataquery)){
+  $where = " id_campo = 52 
+  AND data_venda = '$dataquery'
+  AND numero_loja IN ( 1, 2, 4, 5, 8, 9 ) 
+  AND numero_pdv > 0 
+  AND numero_cupom IS NOT NULL";
+}else{
+  $where = " id_campo = 52 
+  AND data_venda = CURRENT_DATE
+  AND numero_loja IN ( 1, 2, 4, 5, 8, 9 ) 
+  AND numero_pdv > 0 
+  AND numero_cupom IS NOT NULL";
+}
+
+$getDadosAdicionais = "SELECT * 
+                        FROM dados_adicionais_capa 
+                         WHERE " .$where;
+$resDA = mysqli_query($mysqlConn, $getDadosAdicionais);
+  if (mysqli_num_rows($resDA) > 0) {
+
+    echo " WHERE: " .$where . "<br/>";
+
+    while($row = mysqli_fetch_assoc($resDA)) {
+       /*
+        # ----------------------------------------------------
+        # CADASTRA NOVOS DADOS NA: OB_DADOS_ADICIONAIS_CAPA
+        # ----------------------------------------------------
+       */
+       $query = "INSERT INTO BIGMAIS.OB_DADOS_ADICIONAIS_CAPA(data_venda, numero_loja, numero_pdv, numero_cupom, id_campo, valor_campo) values (TRUNC(TO_DATE('".$row['data_venda']."', 'YYYY-MM-DD')), ".$row['numero_loja'].", ".$row['numero_pdv'].", ".$row['numero_cupom'].",".$row['id_campo'].", '".$row['valor_campo']."')";
+       if(!$stmt = oci_parse($oraConn,$query)){
+        $e = oci_error($stmt);
+        throw new Exception("Erro ao preparar consulta - " . $e['message']);
+        oci_close($oraConn);
+       }
+      if(!oci_execute($stmt)){
+        $e = oci_error($oraConn);
+        throw new Exception("Erro ao executar consulta - " . $e['message']);
+        oci_close($oraConn);
+      }
+    }
+  } else {
+    print " 0 resultados na dados_adicionais_capa.";
+  }
+
+/*
+ # ----------------------------------------------------
+ # BUSCA DADOS ATUALIZADOS PARA SEREM GRAVADOS 
+ # NA PDV_DOCTOFIDELIDADE
+ # ----------------------------------------------------
+*/
+$query = "SELECT * FROM BIGMAIS.OBV_CLI_FID";
+ if(!$stmt = oci_parse($oraConn,$query)){
+  $e = oci_error($stmt);
+  throw new Exception("Erro ao preparar consulta - " . $e['message']);
+  oci_close($oraConn);
+ }
+if(!oci_execute($stmt)){
+  $e = oci_error($oraConn);
+  throw new Exception("Erro ao executar consulta - " . $e['message']);
+  oci_close($oraConn);
+}
+
+while (($row = oci_fetch_assoc($stmt)) != false) {
+
+  /*
+   # ----------------------------------------------------
+   # CADASTRA NA PDV_DOCTOFIDELIDADE
+   # ----------------------------------------------------
+  */
+  $insertCadastro = "INSERT INTO PDV_DOCTOFIDELIDADE(SEQDOCTO,CODPARCEIRO,SEQPESSOA,CNPJCPF,DESCPARCEIRO,CODCLIENTE,FONE,DTAHORINSERCAO) 
+  values (".$row['SEQDOCTO'].",".$row['CODPARCEIRO'].",".$row['SEQPESSOA'].",".$row['CNPJCPF'].",'".$row['DESCPARCEIRO']."',".$row['CODCLIENTE'].",NULL,'".$row['DTAHORINSERCAO']."')";
+  if(!$stmtInsert = oci_parse($oraConn,$insertCadastro)){
+    $e = oci_error($stmtInsert);
+    throw new Exception("Erro ao preparar consulta - " . $e['message']);
+    oci_close($oraConn);
+   }
+  if(!oci_execute($stmtInsert)){
+    $e = oci_error($oraConn);
+    throw new Exception("Erro ao executar consulta - " . $e['message']);
+    oci_close($oraConn);
+  }
+}
+
+/*
+ # ----------------------------------------------------
+ # REMOVE OS DUPLICADOS
+ # ----------------------------------------------------
+*/
+$delete = "CALL CONSINCO.SP_REM_DUP_FID('i')";
+ if(!$stmt = oci_parse($oraConn,$delete)){
+  $e = oci_error($stmt);
+  throw new Exception("Erro ao preparar consulta - " . $e['message']);
+  oci_close($oraConn);
+ }
+if(!oci_execute($stmt)){
+  $e = oci_error($oraConn);
+  throw new Exception("Erro ao executar consulta - " . $e['message']);
+  oci_close($oraConn);
+}else{
+  echo "CALL CONSINCO.SP_REM_DUP_FID('i'): executado corretamente. <br>";
+}
+
+/*
+ # ----------------------------------------------------
+ # LIMPA A TABELA PARA RECEBER OS NOVOS REGISTROS
+ # ----------------------------------------------------
+*/
+$deletem = "CALL CONSINCO.SP_REM_DUP_MFID(sysdate)";
+ if(!$stmt = oci_parse($oraConn,$deletem)){
+  $e = oci_error($stmt);
+  throw new Exception("Erro ao preparar consulta - " . $e['message']);
+  oci_close($oraConn);
+ }
+if(!oci_execute($stmt)){
+  $e = oci_error($oraConn);
+  throw new Exception("Erro ao executar consulta - " . $e['message']);
+  oci_close($oraConn);
+}else{
+  echo "CALL CONSINCO.SP_REM_DUP_MFID(sysdate): executado corretamente. <br>";
+}
+
+/*
+ # ----------------------------------------------------
+ # INTEGRA: mfl_doctofidelidade
+ # ----------------------------------------------------
+*/
+$integram = "CALL CONSINCO.SP_IMP_MFID(sysdate)";
+ if(!$stmt = oci_parse($oraConn,$integram)){
+  $e = oci_error($stmt);
+  throw new Exception("Erro ao preparar consulta - " . $e['message']);
+  oci_close($oraConn);
+ }
+if(!oci_execute($stmt)){
+  $e = oci_error($oraConn);
+  throw new Exception("Erro ao executar consulta - " . $e['message']);
+  oci_close($oraConn);
+}else{
+  echo "CALL CONSINCO.SP_IMP_MFID(sysdate): executado corretamente. <br>";
+}
+
+/*
+ # ----------------------------------------------------
+ # FECHA A CONEXÃO COM MYSQL
+ # ----------------------------------------------------
+*/
+mysqli_close($mysqlConn);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integração Docto Fidelidade</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <style>
-    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
-
-    html {
-        background-image: url(img/fundo.png);
-        background-size: cover;
-        padding: 0.5%;
-        overflow: hidden;
-    }
-
-    h3 {
-        font-family: 'Lora', sans-serif;
-        font-weight: 700;
-        font-style: normal;
-        font-size: 20x;
-        line-height: 1.15;
-        letter-spacing: -.02em;
-        color: rgba(0, 0, 0, 0.8);
-        -webkit-font-smoothing: antialiased;
-        padding-top:20px;
-
-    .panel-default {
-        box-shadow: #000 3px 3px 2px;
-        height: 95vh
-    }
-    </style>
-</head>
-
-<body>
-    <div style="text-align:center">
-        <h3>INTEGRAÇÃO DOCTO FIDELIDADE</h3>
-    </div>
-    <div id="chart"></div>
-    <script>
-    var categories = <?php echo json_encode($data_series); ?>;
-    var dataDocto  = <?php echo json_encode($doctofid_series); ?>;
-    var dataMFL    = <?php echo json_encode($mflfid_series); ?>;
-
-    
-
-    var options = {
-        series: [{
-            name: 'DOCTOFID',
-            data: dataDocto
-        }],
-        chart: {
-            type: 'bar',
-            height: 500,
-            toolbar: {
-                show: true
-            },
-            zoom: {
-                enabled: true
-            }
-        },
-        plotOptions: {
-            horizontal: false,
-            columnWidth: '60%',
-            endingShape: 'rounded'
-        },
-        dataLabels: {
-            enabled: false,
-            orientation: 'horizontal'
-        },
-        stroke: {
-            show: true,
-            width: 2,
-            colors: ['transparent']
-        },
-        xaxis: {
-            categories: categories
-        },
-        legend: {
-            position: 'top',
-            offsetY: 40
-        },
-        fill: {
-            opacity: 1
-        },
-        tooltip: {
-            y: {
-                formatter: function(val) {
-                    return 'Total: ' + val + " Cupons"
-                }
-            }
-        }
-    };
-
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
-    </script>
-</body>
-
-</html>
