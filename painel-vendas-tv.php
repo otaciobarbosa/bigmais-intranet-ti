@@ -36,6 +36,7 @@ if (!is_array($dataSchedulers)) {
 <head>
     <?php $title = 'Painel de Vendas'; ?>
     <?php include 'custom/head.php'; ?>
+    <meta http-equiv="refresh" content="10">
 </head>
 
 <body class="container-fluid">

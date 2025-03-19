@@ -19,7 +19,7 @@ if (!isset($_SESSION["usuario"])) {
             <div class="container-fluid">
                 <div class="no-margin-bottom">
                     <?php
-$pedidos = "SELECT p.situacaoped, P.* FROM MAD_PEDVENDA P WHERE P.NROEMPRESA = 9 AND P.SITUACAOPED = 'P'";
+$pedidos = "SELECT p.situacaoped, P.* FROM MAD_PEDVENDA P WHERE P.SITUACAOPED = 'P'";
 
 
 try{
@@ -77,18 +77,11 @@ $oraPorta        = "1521";
                                         <td style='font-size:12px;text-align:center;'><?php echo $row['SEQPESSOA']; ?>
                                         </td>
                                         <td style='font-size:12px;text-align:center;'>
-
-                                            <form class="form-inline" action="consinco-pedido-ajustar.php" method='GET'>
-                                                <div class="form-group">
-                                                    <input type="hidden" id="pedido" name="pedido"
-                                                        value="<?php echo $row["NROPEDVENDA"]; ?>">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary btn-sm">
-                                                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                                                    AJUSTAR PEDIDO
-                                                </button>
-                                            </form>
-
+                                            <a class="btn btn-primary btn-sm"
+                                                href="consinco-pedido-ajustar.php?pedido=<?php echo $row["NROPEDVENDA"]; ?>&nroempresa=<?php echo $row["NROEMPRESA"]; ?>">
+                                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                                AJUSTAR PEDIDO
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php } ?>

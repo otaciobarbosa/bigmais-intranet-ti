@@ -1,8 +1,9 @@
 <?php
 include 'data/conexao.php';
 $pedido= $_GET['pedido'];
+$nroempresa= $_GET['nroempresa'];
 
-$alterarPedido = "UPDATE MAD_PEDVENDA SET situacaoped = 'D' WHERE P.NROEMPRESA in ('9') AND P.NROPEDVENDA = '$pedido'";
+$alterarPedido = "UPDATE MAD_PEDVENDA P SET P.situacaoped = 'D' WHERE P.NROEMPRESA = '$nroempresa' AND P.NROPEDVENDA = '$pedido'";
 var_dump($alterarPedido );
 
 try{
@@ -35,6 +36,6 @@ $oraPorta        = "1521";
   oci_close($oraConn);
 }
 
-header("Location: consinco-pedido.php");
+ header("Location: consinco-pedido.php");
  exit;
 ?>
