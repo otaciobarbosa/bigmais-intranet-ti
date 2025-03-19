@@ -24,11 +24,11 @@ $resultVenda = mysqli_query($conn, $venda);
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
 
 <head>
-    <?php include 'custom/header.php'; ?>
+    <?php include 'custom/ads/header.php'; ?>
 </head>
 
 <body>
-    <?php include 'custom/navbar.php'; ?>
+    <?php include 'custom/ads/navbar.php'; ?>
     <div class="content-inner">
         <header class="page-header">
             <div class="container-fluid">
@@ -42,43 +42,22 @@ $resultVenda = mysqli_query($conn, $venda);
                         <label for="loja">LOJA:</label>
                         <select class="form-control" id="loja" name="loja">
                             <option></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
+                            <?php 
+                              for ($i=1; $i <= 11; $i++) { 
+                              	echo "<option value=".$i.">".$i."</option>";
+                              }
+                             ?>
                         </select>
 
                         &emsp;
                         <label for="pdv">PDV:</label>
                         <select class="form-control" id="pdv" name="pdv">
                             <option></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
+                            <?php 
+                              for ($i=1; $i <= 40; $i++) { 
+                              	echo "<option value=".$i.">".$i."</option>";
+                              }
+                             ?>
                         </select>
 
                         &emsp;&emsp;
@@ -171,7 +150,7 @@ $resultVenda = mysqli_query($conn, $venda);
 
         <div class="card">
             <div class="card-body">
-            <h3>SAIDA OPERADOR</h3>
+                <h3>SAIDA OPERADOR</h3>
                 <table class="table table-condensed table-bordered table-striped">
                     <thead>
                         <tr>
@@ -233,71 +212,71 @@ $resultVenda = mysqli_query($conn, $venda);
             </div>
         </div>
         <div class="card">
-        <div class="card-body">
-        <h3>MOVIMENTO OPERADOR</h3>
-            <table class="table table-condensed table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>DATA</th>
-                        <th>LOJA</th>
-                        <th>PDV</th>
-                        <th>SEQUENCIA</th>
-                        <th>CODIGO</th>
-                        <th>CODF</th>
-                        <th>DESCF</th>
-                        <th>SITUACAO</th>
-                        <th>VALOR</th>
-                        <th>TROCO</th>
-                        <th>VALE</th>
-                        <th>JUROS</th>
-                        <th>SANGRIA</th>
-                        <th>FC</th>
-                        <th>DEV</th>
-                        <th>QTD</th>
-                        <th>DOCAO</th>
-                        <th>STEF</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+            <div class="card-body">
+                <h3>MOVIMENTO OPERADOR</h3>
+                <table class="table table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>DATA</th>
+                            <th>LOJA</th>
+                            <th>PDV</th>
+                            <th>SEQUENCIA</th>
+                            <th>CODIGO</th>
+                            <th>CODF</th>
+                            <th>DESCF</th>
+                            <th>SITUACAO</th>
+                            <th>VALOR</th>
+                            <th>TROCO</th>
+                            <th>VALE</th>
+                            <th>JUROS</th>
+                            <th>SANGRIA</th>
+                            <th>FC</th>
+                            <th>DEV</th>
+                            <th>QTD</th>
+                            <th>DOCAO</th>
+                            <th>STEF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                             if (mysqli_num_rows($resultMovimento) > 0) {
                             while($rowMovimento = mysqli_fetch_assoc($resultMovimento)) {
                             ?>
-                    <tr>
-                        <td style='text-align:center;'><?php echo $rowMovimento["data_movimento"]; ?>
-                        </td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["numero_loja"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["numero_pdv"]; ?></td>
-                        <td style='text-align:center;'>
-                            <?php echo $rowMovimento["sequencia_operador"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["codigo_operador"]; ?>
-                        </td>
-                        <td style='text-align:center;'>
-                            <?php echo $rowMovimento["codigo_finalizadora"]; ?></td>
-                        <td style='text-align:left;'><?php echo $rowMovimento["desc_finalizadora"]; ?>
-                        </td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["situacao"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["valor"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["troco"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["vale"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["juros"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["sangria"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["fundo_caixa"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["devolucao"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["quantidade"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["valor_doacao"]; ?></td>
-                        <td style='text-align:center;'><?php echo $rowMovimento["saque_sitef"]; ?></td>
+                        <tr>
+                            <td style='text-align:center;'><?php echo $rowMovimento["data_movimento"]; ?>
+                            </td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["numero_loja"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["numero_pdv"]; ?></td>
+                            <td style='text-align:center;'>
+                                <?php echo $rowMovimento["sequencia_operador"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["codigo_operador"]; ?>
+                            </td>
+                            <td style='text-align:center;'>
+                                <?php echo $rowMovimento["codigo_finalizadora"]; ?></td>
+                            <td style='text-align:left;'><?php echo $rowMovimento["desc_finalizadora"]; ?>
+                            </td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["situacao"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["valor"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["troco"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["vale"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["juros"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["sangria"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["fundo_caixa"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["devolucao"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["quantidade"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["valor_doacao"]; ?></td>
+                            <td style='text-align:center;'><?php echo $rowMovimento["saque_sitef"]; ?></td>
 
-                    </tr>
-                    <?php }} ?>
-                </tbody>
-            </table>
+                        </tr>
+                        <?php }} ?>
+                    </tbody>
+                </table>
 
+            </div>
         </div>
-    </div>
         <div class="card">
             <div class="card-body">
-            <h3>VENDAS</h3>
+                <h3>VENDAS</h3>
                 <div class="table-responsive">
                     <table id="vendas" class="table table-condensed table-bordered table-striped">
                         <thead>
@@ -387,10 +366,10 @@ $resultVenda = mysqli_query($conn, $venda);
     </div>
     </div>
 
-    
+
     </div>
     <?php mysqli_close($conn); ?>
-    <?php include 'custom/footer.php'; ?>
+    <?php include 'custom/ads/footer.php'; ?>
 </body>
 
 </html>
