@@ -1,0 +1,8 @@
+source /etc/profile
+
+export COBPATH=/u/sist/tmp
+
+
+cd /u/integtest/server/
+../node/bin/node --max-old-space-size=1800  integweb.js
+

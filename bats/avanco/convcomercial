@@ -1,0 +1,28 @@
+#! /bin/bash
+#
+
+stty -isig
+clear
+echo " Informe o nome do arquivo do produtor rural do  SPOOL a e tecle ENTER: "
+echo ""
+read opcao
+
+REF=`date +%m-%y|awk -F"-" '{print $1-1$2}'`
+head /u/sistema/bigmais/sist/rel/$opcao
+cat /u/sistema/bigmais/sist/rel/$opcao |cut -c1-80|grep ","|grep -v Total|cut -c1-9,11-18,21-71,72-80 --output-delimite=";"|tr -d "."|sed -e 's/,/./'|awk -F";" '{printf "%1s;%7s;%.40s;%10.2f;%12.4f \n", $2, $1, $3, $4, $4*0.023}'|cut -c1-81|sed 's/\./,/g' > /u/rede/trb/$opcao.csv
+
+#cp /u/sistema/bigmais/sist/rel/$opcao /u1/rel
+
+if [ $? != 1 ]
+	then
+	echo ""
+	echo " Arquivo copiado com SUCESSO !!! Tecle <Enter> !"
+	echo ""
+	read tecla
+	exit 0
+fi
+
+echo ""
+echo " Ocorreu ERRO. Copia nao realizada !!! Tecle <Enter> !"
+echo ""
+read tecla

@@ -1,0 +1,38 @@
+#! /bin/bash
+#
+
+stty -isig
+clear
+echo " Informe o nome do SPOOL a copiar e tecle ENTER: "
+echo ""
+read opcao
+
+dos2unix /u/sistema/bigmais/sist/rel/$opcao
+DIA=`date +%d-%m-%y|awk -F"-" '{print $1$2$3}'`
+DTEMIT=`cat  /u/sistema/bigmais/sist/rel/$opcao|grep Dt.Emissao|cut -c50-57|sed "s/\/15/2015/"|tr -d "/"`
+echo $DTEMIT
+cat /u/sistema/bigmais/sist/rel/$opcao |cut --output-delimiter=";" -c1-2,25-27,34-39,71-80,85-95 |grep "," |grep "#" |grep  -v Geral|cut -c1-35| sed 's/Total Por Tipo\:/               /' |sed "s/VENDAS/484\;$DTEMIT/" |tr -d "." > /tmp/limpovendas$DIA
+cat /u/sistema/bigmais/sist/rel/$opcao |cut --output-delimiter=";" -c1-2,25-27,34-39,71-80,85-95 |grep ","|grep "#" |grep  -v Geral|cut -c1-35|sed 's/Total Por Tipo\:/               /' |sed "s/VENDAS/484\;$DTEMIT/" |tr -d "."|tr -d "-" > /tmp/limpotaxas$DIA
+awk -F";" '{printf "%1s%7d %19s %54s %267d \n", $4"000000",  $2, $3, $6, $1}' /tmp/limpotaxas$DIA    > /u/sist/trb/taxas$DIA.txt
+awk -F";" '{printf "%1s%7d %19s %54s %267d \n", $4"000000",  $2, $3, $5, $1}' /tmp/limpovendas$DIA    > /u/sist/trb/vendas$DIA.txt
+
+
+
+#cp /u/sistema/bigmais/sist/rel/$opcao /u1/rel
+
+if [ $? != 1 ]
+	then
+	echo ""
+	echo " Arquivos cconvertidos com SUCESSO !!! Nomes:"
+	echo taxas$DIA.txt
+	echo vendas$DIA.txt
+	echo ""
+	echo "tecle <enter>"
+	read tecla
+	exit 0
+fi
+
+echo ""
+echo " Ocorreu ERRO. Copia nao realizada !!! Tecle <Enter> !"
+echo ""
+read tecla

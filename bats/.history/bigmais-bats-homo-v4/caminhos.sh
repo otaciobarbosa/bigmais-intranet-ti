@@ -1,0 +1,13 @@
+/home
+/sbin
+/u/bigsuper
+/u/bmais
+/u/coleta
+/u/coletor
+/u/cpd
+/u/fim
+/u/geral
+/u/home
+/u/invent
+/u/onl100
+/u/pgsql

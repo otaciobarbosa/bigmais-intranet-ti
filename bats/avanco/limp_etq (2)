@@ -1,0 +1,10 @@
+stty -isig
+clear
+cd /u/sistema/bigmais/sist/rel
+ls -l et0*
+echo " Remover etiquetas (T/N) Total - Nao remover: \c"
+read opcao
+case $opcao in
+        t|T) clear
+             rm et0* ;;
+esac

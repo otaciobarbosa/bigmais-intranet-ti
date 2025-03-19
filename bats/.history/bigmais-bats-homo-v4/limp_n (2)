@@ -1,0 +1,1 @@
+find /u/sist/n -type f -atime +60 -print -exec rm -f {} \;

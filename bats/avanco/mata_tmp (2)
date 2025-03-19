@@ -1,0 +1,45 @@
+#! /bin/bash
+#
+
+cd /tmp
+rm -rf ut*
+
+cd /u/sistema/bigmais/sist/trb
+rm -rf *
+
+cd /u/sistema/bigmais/sist/tmp
+rm -rf a* A* b* B*
+rm -rf c* C*
+rm -rf d* D* 
+rm -rf e* E*
+rm -rf f* F*
+rm -rf g* G*
+rm -rf h* H*
+rm -rf i* I*
+rm -rf j* J*
+rm -rf k* K*
+rm -rf l* L*
+rm -rf m* M*
+rm -rf n* N*
+rm -rf o* O*
+rm -rf p* P*
+rm -rf q* Q*
+rm -rf r* R*
+rm -rf s* S*
+rm -rf t* T*
+rm -rf u* U*
+rm -rf v* V*
+rm -rf x* X*
+rm -rf y* Y*
+rm -rf z* Z*
+rm -rf w* W*
+rm -rf 0*
+rm -rf 1*
+rm -rf 2*
+rm -rf 3*
+rm -rf 4*
+rm -rf 5*
+rm -rf 6*
+rm -rf 7*
+rm -rf 8*
+rm -rf 9*

@@ -1,0 +1,10 @@
+for i in `ls /u/rede/RETAG/20180617/`
+do
+	data=`cat /u/rede/RETAG/20180617/$i | grep -c 7891149102303`
+	if [ $data > 0 ] 
+	then
+		echo $i
+	fi
+
+
+done

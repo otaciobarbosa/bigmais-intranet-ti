@@ -1,0 +1,30 @@
+#!/bin/bash
+
+. /etc/bash.bashrc
+. /u/login/cpd/.bashrc
+
+PATH=$PATH:/u/cobol/bin:/u/bats:
+COBDIR=/u/cobol
+COBSW=+R+Q
+COBCPY=/u/fontes/cpys
+COBTERMINFO=/u/cobol/terminfo
+COBPATH=/u/sist/tmp
+export LD_LIBRARY_PATH=$COBDIR/lib:/usr/lib/java/jre/lib/i386/server/:$LD_LIBRAR
+export COBDIR COBPATH COBSW COBCPY COBTERMINFO PATH LD_LIBRARY_PATH
+
+umask 000
+
+zeraLogs(){
+    > /u/node_apps/carga/carga-nfe.log
+    > $HOME/.pm2/logs/carga-error-0.log
+    > $HOME/.pm2/logs/carga-out-0.log
+}
+
+TESTA=`ps ax | grep -v 'grep' | grep -c 'node_apps'`
+
+if [ $TESTA = 0 ]; then
+    . $HOME/.bashrc
+    zeraLogs
+    cd /u/node_apps
+    pm2 start pm2.json
+fi
