@@ -1,0 +1,527 @@
+#!/bin/bash
+
+atualiza () {
+cd /u/rede/atualizacoes
+clear
+confere=`ls | grep -c rar`
+if [ $confere -ne 0 ]; then
+    tput smso; tput cup 0 69; echo "(99) Aborta"
+while
+    tput smso
+    tput cup 2 20; echo "                                      "
+    tput cup 3 20; echo " INFORME QUAL DOS PACOTES ABAIXO SERA "
+    tput cup 4 20; echo "        UTILIZADO NA ATUALIZACAO      "
+    tput cup 5 20; echo "                                      "
+    tput rmso
+    echo ""
+    lista=`ls -1 *.rar`
+    echo "$lista"
+    echo ""
+    echo -n "                Informe o nome do pacote: "
+    do
+    read pacote
+	case $pacote in
+
+	$pacote)
+	if [ $pacote = 99 ]; then
+	    menuatualiza
+	fi
+	    if [ -e /u/rede/atualizacoes/$pacote ]; then
+		verifica=`file /u/rede/atualizacoes/$pacote | grep -c RAR`
+		if [ $verifica = 0 ]; then
+		clear
+		tput smso
+		tput cup 11 26; echo "                           "
+		tput cup 12 26; echo " O ARQUIVO INFORMADO NAO E "
+		tput cup 13 26; echo "      PACOTE RAR AVANCO    "
+		tput cup 14 26; echo "                           "
+		tput rmso
+		sleep 5
+		menuatualiza
+		else
+		clear
+		ano=`date +%Y`
+		dia=`date +%d`
+		mes=`date +%m`
+		hora=`date +%H`
+		min=`date +%M`
+		seg=`date +%S`
+		tput smso
+		tput cup 11 19; echo "                                          "
+		tput cup 12 19; echo " REALIZANDO BACKUP DOS EXECUTAVEIS ATUAIS "
+		tput cup 13 19; echo "                                          "
+		tput cup 14 19; echo "                                          "
+		tput rmso
+		cd /u/sist/exec
+		if [ -e thiago.gnt ]; then
+		rm thiago.gnt
+		fi
+		killall rts32 > /dev/null 2>&1
+		mv integral.gnt thiago.gnt
+		/usr/bin/rar a -inul /u/rede/executaveis.bkp/exec-$dia.$mes.$ano-$hora.$min.$seg.rar *.gnt > /dev/null 2>&1 &
+		mostraHelice() {
+		    tput civis
+		    while [ -d /proc/$! ]
+		    do
+			for i in / - \\ \|
+			do
+			printf "\033[1D$i"
+			sleep .1
+			done
+		    done
+		    tput cnorm
+		}
+		tput smso; tput cup 13 34;printf "Aguarde...\040\040" ; mostraHelice;tput rmso
+		cd /u/sist/exec
+		cp /u/rede/atualizacoes/$pacote .
+		clear
+		tput smso
+		tput cup 11 27; echo "                         "
+		tput cup 12 27; echo " ATUALIZANDO EXECUTAVEIS "
+		tput cup 13 27; echo "                         "
+		tput cup 14 27; echo "                         "
+		tput rmso
+		/usr/bin/rar e -inul $pacote -y > /dev/null 2>&1 &
+		mostraHelice() {
+		    tput civis
+		    while [ -d /proc/$! ]
+		    do
+			for i in / - \\ \|
+			do
+			printf "\033[1D$i"
+			sleep .1
+			done
+		    done
+		    tput cnorm
+		}
+		tput smso; tput cup 13 34;printf "Aguarde...\040\040" ; mostraHelice;tput rmso
+		rm -f $pacote
+		if [ ! -e integral.gnt ]; then
+		    mv thiago.gnt integral.gnt
+		fi
+		chown -R avanco.sist *
+		chmod -R 777 *
+		clear
+		tput smso
+		tput cup 12 27; echo "                        "
+		tput cup 13 27; echo " ATUALIZACAO FINALIZADA "
+		tput cup 14 27; echo "                        "
+		tput rmso
+		sleep 5
+		menuatualiza
+		fi
+	    else
+		clear
+		tput smso
+		tput cup 11 16; echo "                                               "
+		tput cup 12 16; echo "      NAO FOI ENCONTRADO O ARQUIVO INFORMADO   "
+		tput cup 13 16; echo " NO DIRETORIO L:\atualizacoes , FAVOR CONFERIR "
+		tput cup 14 16; echo "                                               "
+		tput rmso
+		sleep 5
+		menuatualiza
+	    fi;;
+    esac
+done
+
+else
+    clear
+    tput smso
+    tput cup 11 19; echo "                                       "
+    tput cup 12 19; echo " NAO EXISTEM PACOTES DE ATUALIZACAO NO "
+    tput cup 13 19; echo "   NO DIRETORIO L:\atualizacoes        "
+    tput cup 14 19; echo "                                       "
+    tput rmso
+    sleep 5
+    menuatualiza
+fi
+}
+
+restaura () {
+cd /u/rede/executaveis.bkp
+confere=`ls | grep -c rar`
+clear
+if [ $confere -ne 0 ]; then
+    tput smso; tput cup 0 69; echo "(99) Aborta"
+while
+    tput smso
+    tput cup 3 21; echo "                                     "
+    tput cup 4 21; echo " INFORME QUAL BACKUP SERA RESTAURADO "
+    tput cup 5 21; echo "                                     "
+    tput rmso
+    echo ""
+    lista1=`ls -1 *.rar`
+    echo "$lista1"
+    echo ""
+    echo -n "                Informe o nome do Backup: "
+    do
+    read backup
+	case $backup in
+
+	$backup)
+	if [ $backup = 99 ]; then
+	    menuatualiza
+	fi
+	    if [ -e /u/rede/executaveis.bkp/$backup ]; then
+		verifica1=`file /u/rede/executaveis.bkp/$backup | grep -c RAR`
+		if [ $verifica1 = 0 ]; then
+		clear
+		tput smso
+		tput cup 11 26; echo "                           "
+		tput cup 12 26; echo " O ARQUIVO INFORMADO NAO E "
+		tput cup 13 26; echo "      PACOTE RAR AVANCO    "
+		tput cup 14 26; echo "                           "
+		tput rmso
+		sleep 5
+		menuatualiza
+		else
+		clear
+		ano=`date +%Y`
+		dia=`date +%d`
+		mes=`date +%m`
+		hora=`date +%H`
+		min=`date +%M`
+		seg=`date +%S`
+		tput smso
+		tput cup 11 19; echo "                                          "
+		tput cup 12 19; echo " REALIZANDO BACKUP DOS EXECUTAVEIS ATUAIS "
+		tput cup 13 19; echo "                                          "
+		tput cup 14 19; echo "                                          "
+		tput rmso
+		cd /u/sist/exec
+		if [ -e thiago.gnt ]; then
+		rm thiago.gnt
+		fi
+		killall rts32 > /dev/null 2>&1
+		mv integral.gnt thiago.gnt
+		/usr/bin/rar a -inul /u/rede/executaveis.bkp/exec-$dia.$mes.$ano-$hora.$min.$seg.rar *.gnt > /dev/null 2>&1 &
+		mostraHelice() {
+		    tput civis
+		    while [ -d /proc/$! ]
+		    do
+			for i in / - \\ \|
+			do
+			printf "\033[1D$i"
+			sleep .1
+			done
+		    done
+		    tput cnorm
+		}
+		tput smso; tput cup 13 34;printf "Aguarde...\040\040" ; mostraHelice;tput rmso
+		cd /u/sist/exec
+		cp /u/rede/executaveis.bkp/$backup .
+		clear
+		tput smso
+		tput cup 11 27; echo "                         "
+		tput cup 12 27; echo " RESTAURANDO EXECUTAVEIS "
+		tput cup 13 27; echo "         AGUARDE...      "
+		tput cup 14 27; echo "                         "
+		tput rmso
+		/usr/bin/rar e -inul $backup -y > /dev/null 2>&1 &
+		mostraHelice() {
+		    tput civis
+		    while [ -d /proc/$! ]
+		    do
+			for i in / - \\ \|
+			do
+			printf "\033[1D$i"
+			sleep .1
+			done
+		    done
+		    tput cnorm
+		}
+		tput smso; tput cup 13 34;printf "Aguarde...\040\040" ; mostraHelice;tput rmso
+		rm -f $backup
+		if [ ! -e integral.gnt ]; then
+		    mv thiago.gnt integral.gnt
+		fi
+		chown avanco.sist *
+		chmod -R 777 *
+		clear
+		tput smso
+		tput cup 12 27; echo "                        "
+		tput cup 13 27; echo " RESTAURACAO FINALIZADA "
+		tput cup 14 27; echo "                        "
+		tput rmso
+		sleep 5
+		menuatualiza
+		fi
+	    else
+		clear
+		tput smso
+		tput cup 11 14; echo "                                                   "
+		tput cup 12 14; echo "    NAO FOI ENCONTRADO O ARQUIVO INFORMADO NO      "
+		tput cup 13 14; echo "   DIRETORIO L:\executaveis.bkp , FAVOR CONFERIR   "
+		tput cup 14 14; echo "                                                   "
+		tput rmso
+		sleep 5
+		menuatualiza
+	    fi;;
+    esac
+done
+
+else
+    clear
+    tput smso
+    tput cup 11 19; echo "                                        "
+    tput cup 12 19; echo "    NAO EXISTEM BACKUPS NO DIRETORIO    "
+    tput cup 13 19; echo " L:\executaveis.bkp A SEREM RESTAURADOS "
+    tput cup 14 19; echo "                                        "
+    tput rmso
+    sleep 5
+    menuatualiza
+fi
+}
+
+download () {
+clear
+testaatu=`ls /u/rede/atualizacoes/*.rar | grep -v -c cogumeloazul`
+if [ $testaatu -ne 0 ]; then
+    tput smso
+    tput cup 11 11; echo "                                                        "
+    tput cup 12 11; echo " JA EXISTEM ARQUIVOS NO DIRETORIO L:\atualizacoes FAVOR "
+    tput cup 13 11; echo "     REMOVER OS ARQUIVOS OU ALTERA-LOS DE DIRETORIO     "
+    tput cup 14 11; echo "                                                        "
+    tput rmso
+    sleep 5
+    menuprincipal
+else
+	clear
+		tput smso
+		tput cup 11 23; echo "                                 "
+		tput cup 12 23; echo " TESTANDO CONEXAO COM A INTERNET "
+		tput cup 13 23; echo "           AGUARDE...            "
+		tput cup 14 23; echo "                                 "
+		tput rmso
+	    if ! ping -c 5 www.terra.com.br > /dev/null; then
+		clear
+		tput smso
+		tput cup 11 24; echo "                               "
+		tput cup 12 24; echo " SEM CONEXAO COM A INTERNET !  "
+		tput cup 13 24; echo "                               "
+		tput rmso
+		sleep 3
+		menuprincipal
+	    fi
+cd /u/rede/atualizacoes
+clear
+while
+tput smso; tput cup 0 69; echo "(99) Aborta"
+tput smso
+tput cup 10 26; echo "                           "
+tput cup 11 26; echo " INFORME O LINK DO ARQUIVO "
+tput cup 12 26; echo "                           "
+tput rmso
+tput cup 14 15; echo -n "Cole o link aqui => "
+do
+    read link
+    case $link in
+    $link) 
+	if [ $link = 99 ]; then
+		menuprincipal
+	else
+		clear
+		tput smso
+		tput cup 4 29; echo "                    "
+		tput cup 5 29; echo " AGUARDE O DOWNLOAD "
+		tput cup 6 29; echo "                    "
+		tput rmso
+		echo ""
+		echo ""
+		wget $link
+		clear
+		tput smso
+		tput cup 11 29; echo "                     "
+		tput cup 12 29; echo " DOWNLOAD FINALIZADO "
+		tput cup 13 29; echo "                     "
+		tput rmso
+		sleep 5
+		menuprincipal
+	fi;;
+    esac
+done
+fi
+}
+
+menuprincipal () {
+clear
+while
+tput cup 6 27; echo " O QUE VOCE DESEJA FAZER? "
+tput cup 10 27;echo "1  -  Atualizar Sistema   "
+tput cup 11 27;echo "2  -  Download Atualizacao"
+tput cup 12 27;echo "99 -  Sair"
+tput cup 15 31;echo -n "Opcao: "
+do
+read opcao
+case $opcao in
+    1) usuarios;;
+    2) download;;
+    99) exit;;
+esac
+done
+}
+
+menuatualiza () {
+clear
+while
+tput smso
+tput cup 5 22; echo "                                  "
+tput cup 6 22; echo " UTILITARIO DE ATUALIZACAO AVANCO "
+tput cup 7 22; echo "                                  "
+tput rmso
+tput cup 10 31;echo "1  -  Atualizacao"
+tput cup 11 31;echo "2  -  Restauracao"
+tput cup 12 31;echo "99 -  Sair"
+tput cup 15 31;echo -n "Opcao: "
+do
+read opcao
+case $opcao in
+    1) atualiza;;
+    2) restaura;;
+    99) exit;;
+esac
+done
+}
+
+
+
+usuarios () {
+    matatodos () {
+	ps aux | grep rts32 | grep -v usuarioautorizado | grep -v root | grep -v avanco > /tmp/thi.tmp
+	clear
+	tput smso
+	tput cup 11 21; echo "                                    "
+	tput cup 12 21; echo " DESCONECTANDO USUARIOS, AGUARDE... "
+	tput cup 13 21; echo "                                    "
+	tput rmso
+	conta=`more /tmp/thi.tmp | grep -v -c cogumeloazul`
+	while [ $conta -ne 0 ]; do
+	    sessao=`sed -n $conta' p;' /tmp/thi.tmp | cut -b 39-44`
+	    skill -9 $sessao
+	    sleep 1
+	    conta=`expr $conta - 1`
+	done
+
+	sleep 3
+	clear
+	tput smso
+	tput cup 11 27; echo "                        "
+	tput cup 12 27; echo " USUARIOS DESCONECTADOS "
+	tput cup 13 27; echo "                        "
+	tput rmso
+	sleep 3
+	usuarios
+}
+
+while
+    clear
+    ps aux | grep rts32 | grep -v usuarioautorizado | grep -v root | grep -v avanco > /tmp/thi.tmp
+    who | grep -v root | grep -v atualiza | grep -v usuarioautorizado | grep -v avanco > /tmp/ips.tmp
+    conta=`more /tmp/thi.tmp | grep -v -c cogumeloazul`
+
+	showusers () {
+	while [ $conta -ne 0 ]; do
+	    usua=`sed -n $conta' p;' /tmp/thi.tmp | cut -b 1-9`
+	    proc=`sed -n $conta' p;' /tmp/thi.tmp | cut -b 10-15`
+	    prog=`sed -n $conta' p;' /tmp/thi.tmp | cut -b 81-89`
+	    sess=`sed -n $conta' p;' /tmp/thi.tmp | cut -b 39-44`
+	    ip=`sed -n $conta' p;' /tmp/ips.tmp | cut -b 40-65`
+	    echo " $usua  $proc  $prog   $sess $ip"
+	    conta=`expr $conta - 1`
+	done
+}
+
+if [ $conta -ne 0 ]; then
+    echo ""
+    echo "FAVOR DESCONECTAR OS SEGUINTES USUARIOS"
+    echo "ANTES DA ATUALIZACAO DO SISTEMA"
+    sleep 3
+    echo ""
+    tput smso; echo " USUARIO  PROCESSO  PROGRAMA   SESSAO        IP       "; tput rmso
+    echo ""
+    showusers
+    echo ""
+    tput smso; echo "  PRESISONE < D > PARA DESCONECTAR TODOS  "; tput rmso
+    tput smso; echo "      USUARIOS OU TECLE 99 PARA SAIR      "; tput rmso
+    echo ""
+    echo -n " Opcao: "
+else
+    clear
+    tput smso
+    tput cup 11 18; echo "                                          "
+    tput cup 12 18; echo " NAO EXISTEM USUARIOS UTLIZANDO O SISTEMA "
+    tput cup 13 18; echo "                                          "
+    tput rmso
+    sleep 3
+    verificaonline
+fi
+
+    do
+    read opcao
+	case $opcao in
+        d|D) matatodos;;
+         99) menuprincipal;;
+	esac
+done
+}
+
+
+verificaonline () {
+
+    mensagemonline () {
+	clear
+	tput smso
+	tput cup 11 19; echo "  A ROTINA ONLINE ESTA SENDO EXECUTADA  "
+	tput cup 12 19; echo "    DESATIVE A ROTINA PARA ATUALIZAR    "
+	tput cup 13 19; echo "        O SISTEMA INTEGRAL AVANCO       "
+	tput rmso
+	sleep 5
+	exit
+    }
+
+
+online1=`ps ax | grep -c integ034`
+online2=`ps ax | grep -c integ035`
+
+if [ $online1 -le 1 ]; then
+    if [ $online2 -le 1 ]; then
+    menuatualiza
+    else
+    mensagemonline
+    fi
+else
+    mensagemonline
+fi
+}
+
+valida () {
+
+verificarar=`/usr/bin/rar | grep -c 4.20`
+
+if [ $verificarar = 0 ]; then
+clear
+echo " VOCE NAO ESTA COM A VERSAO MAIS NOVA DO "
+echo " DESCCOMPACTADOR RAR INSTALADO !"
+echo ""
+echo " ROTINA ABORTADA!"
+echo ""
+exit
+fi
+
+    if [ ! -r /u/rede/atualizacoes ]; then
+	mkdir /u/rede/atualizacoes
+	chmod -R 777 /u/rede/atualizacoes
+    else
+	find /u/rede/atualizacoes/ -type f -ctime +90 -print -exec rm -f {} \;
+    fi
+    if [ ! -r /u/rede/executaveis.bkp ]; then
+	mkdir /u/rede/executaveis.bkp
+	chmod -R 777 /u/rede/executaveis.bkp
+    else
+    find /u/rede/executaveis.bkp/ -type f -ctime +90 -print -exec rm -f {} \;
+    fi
+    menuprincipal
+}
+
+stty -isig
+valida

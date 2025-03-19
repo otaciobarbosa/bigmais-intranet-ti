@@ -1,0 +1,35 @@
+while
+    clear
+    if [ $USER = root ]; then
+       tput smso
+       echo 'VOCE ESTA COM O USUARIO ROOT, ACESSO NEGADO !!!'
+       tput rmso
+       exit
+    fi
+    stty -isig
+    echo "1 - Precos"
+    echo "2 - Mov   - INTEG053"
+    echo "3 - Conf  - INTEG054"
+    echo "4 - T/P/Q - INTEG055"
+    echo "9 - SAIR"    
+    echo -n "ESCOLHA: " 
+    do
+	read opcao
+        case $opcao in
+            1)  clear 
+		cd /u/sistema/bigmais/sist/exec
+		cobrun integ156 ;;
+	    
+	    2)  clear 
+		cd /u/sistema/bigmais/sist/exec
+		cobrun integ053 ;;
+	    3)  clear 
+		cd /u/sistema/bigmais/sist/exec
+		cobrun integ054 ;;
+	    4)  clear 
+		cd /u/sistema/bigmais/sist/exec
+		cobrun integ055 ;;
+	    9)  clear
+	        exit ;;
+	esac 
+done

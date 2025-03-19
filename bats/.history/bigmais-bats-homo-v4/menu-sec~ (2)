@@ -1,0 +1,52 @@
+while
+    clear
+    if [ $USER = root ]; then
+       tput smso
+       echo 'VOCE ESTA COM O USUARIO ROOT, ACESSO NEGADO !!!'
+       tput rmso
+       exit
+    fi
+    stty -isig
+    echo [37m[0m
+    echo [31m[1m 
+    echo [37m[0m
+    echo "                             A U X I L I O" 
+    echo "                             ~~~~~~~~~~~~~"     
+    tput rmso
+    echo [31m[1m 
+    echo [37m[0m
+    echo [1m "                        Avanco Informatica Ltda" [0m
+    echo [31m[1m 
+    echo [37m[0m
+    echo "                         1  -   Sistema Comercial"
+    echo "                         4  -   Recebimento / Expedicao" 
+    echo "                         8  -   Editor de Textos"
+    echo "                        10  -   Fim" 
+    echo [31m[1m 
+    echo [37m[0m
+    echo -n "                        Escolha a[5m [32m OPCAO  :[37m[0m " 
+    do
+	read opcao
+        case $opcao in
+	    1)  clear 
+		cd /u/sistema/bigmais/sist/exec
+		cobrun integral ;;
+            4) clear
+                cd /u/sistema/bigmais/sist/exec                                 
+                cobrun integ802 ;;
+            5 ) clear
+                cd /u/sistema/bigmais/sist/exec
+                cobrun integ803 ;;
+	    8)  clear
+		cd /u/bats
+		sh editarq ;;
+            10) clear
+		tput smso
+		echo "                             AVANCO INFORMATICA                               "
+		echo "                                                                              "
+		echo "                         TELESUPORTE (031) 3282-1188                          "[37m
+		tput rmso
+		stty sane    
+		exit ;;
+	esac 
+done

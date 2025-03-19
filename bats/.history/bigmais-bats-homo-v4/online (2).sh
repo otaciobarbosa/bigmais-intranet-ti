@@ -1,0 +1,24 @@
+###################################
+# Servico ONLINE Sistema Integral #
+###################################
+
+COBPATH=/u/sist/exec
+COBDIR=/u/cobol
+COBTERMINFO=$COBDIR/terminfo
+LD_LIBRARY_PATH=$COBDIR/lib:/usr/lib/java/jre/lib/i386/server/:$LD_LIBRARY_PATH
+PATH=$PATH:$COBDIR/bin
+TERM=ansi
+export COBPATH COBDIR COBTERMINFO LD_LIBRARY_PATH PATH TERM
+umask 000
+
+cli=`ps ax | grep rts32 | grep -c integ034`
+atu=`ps ax | grep rts32 | grep -c integ035`
+
+cd /u/sistema/bigmais/sist/exec
+
+if [ $cli = 0 ]; then
+    cobrun integ034 &
+fi
+if [ $atu = 0 ]; then
+    nice -n +15 nohup cobrun integ035 >> /u/log-backup/log-integ035.log &
+fi

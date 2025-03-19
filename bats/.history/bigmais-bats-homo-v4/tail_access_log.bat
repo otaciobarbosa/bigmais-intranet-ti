@@ -1,0 +1,1 @@
+powershell.exe -command get-content C:/xampp/apache/logs/access.log -tail 10 -wait

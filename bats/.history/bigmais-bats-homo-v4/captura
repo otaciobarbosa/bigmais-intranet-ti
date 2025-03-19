@@ -1,0 +1,25 @@
+#! /bin/bash
+#
+
+stty -isig
+clear
+echo " Informe o nome do SPOOL a copiar e tecle ENTER: "
+echo ""
+read opcao
+
+cp /u/sistema/bigmais/sist/rel/$opcao /u/rede/trb/$opcao'.txt'
+#cp /u/sistema/bigmais/sist/rel/$opcao /u1/rel
+
+if [ $? != 1 ]
+	then
+	echo ""
+	echo " Arquivo copiado com SUCESSO !!! Tecle <Enter> !"
+	echo ""
+	read tecla
+	exit 0
+fi
+
+echo ""
+echo " Ocorreu ERRO. Copia nao realizada !!! Tecle <Enter> !"
+echo ""
+read tecla

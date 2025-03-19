@@ -1,0 +1,70 @@
+##################################
+# Script para Backup de Arquivos # 
+# de Dados do Sistema Comercial  #
+#                                #  
+# Autor...: Denio dos Santos     #
+# Data....: 21/09/1995           #
+# Alterado: 14/05/1997           # 
+##################################
+
+# Inibe a tecla DEL
+stty -isig
+stty -isig
+
+# Apaga tela
+clear
+
+tela1() {
+        clear
+        echo [1m[7m"$mostra - Aguarde ... "[0m
+}
+
+tela2() {
+        clear
+        echo -n [1m[7m"$mostra - Tecle <ENTER> ... "[0m
+}
+
+tela3() {
+        clear
+        echo -n [1m[7m"$mostra - (Sim ou Nao) [S/N]:"[0m
+}
+
+compacta() {
+        # Compress
+        #
+        mostra="Compacta /u/sistema/bigmais/arq"; tela1; diretorio=arq
+        cd /u/backs/arq; rar a -y uarq /u/sistema/bigmais/arq
+
+        mostra="Compacta /u/sistema/bigmais/arqa"; tela1; diretorio=arqa
+        cd /u/backs/arqa; rar a -y uarqa /u/sistema/bigmais/arqa
+
+
+        mostra="Compacta /u/sistema/bigmais/arqh"; tela1; diretorio=arqh
+        cd /u/backs/arqh; rar a -y arqh /u/sistema/bigmais/arqh
+
+        mostra="Compacta /u/sistema/bigmais/sist/arq"; tela1; diretorio=sist\/arq
+        cd /u/backs/sist/arq; rar a -y sarq /u/sistema/bigmais/sist/arq
+
+        mostra="Compacta /u/sistema/bigmais/sist/arqa";tela1;diretorio=sist\/arqa
+        cd /u/backs/sist/arqa; rar a -y sarqa /u/sistema/bigmais/sist/arqa
+
+        mostra="Compacta /u/sistema/bigmais/sist/arqb"; tela1; diretorio=sist\/arqb
+        cd /u/backs/sist/arqb; rar a -y arqb /u/sistema/bigmais/sist/arqb
+
+        mostra="Compacta /u/sistema/bigmais/sist/arqd"; tela1; diretorio=sist\/arqd
+        cd /u/backs/sist/arqd; rar a -y arqd /u/sistema/bigmais/sist/arqd
+
+        mostra="Compacta /u/sistema/bigmais/sist/arqf"; tela1; diretorio=sist\/arqf
+        cd /u/backs/sist/arqf; rar a -y arqf /u/sistema/bigmais/sist/arqf
+
+        mostra="Compacta /u/sistema/bigmais/sist/arqi"; tela1; diretorio=sist\/arqi
+       cd /u/backs/sist/arqi; rar a -y arqi /u/sistema/bigmais/sist/arqi
+
+        mostra="Compacta /u/sistema/bigmais/sist/arqm"; tela1; diretorio=sist\/arqm
+        cd /u/backs/sist/arqm; rar a -y arqm /u/sistema/bigmais/sist/arqm
+
+        mostra="Compacta /u/sistema/bigmais/sist/arqp"; tela1; diretorio=sist\/arqp
+        cd /u/backs/sist/arqp; rar a -y arqp /u/sistema/bigmais/sist/arqp
+
+        mostra="Compacta /u/sistema/bigmais/sist/arqv"; tela1; diretorio=sist\/arqv
+        cd /u/backs/sist/arqv; rar a -y arqv /u/sistema/bigmais/sist/arqv
