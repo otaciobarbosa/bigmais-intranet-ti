@@ -27,9 +27,7 @@
                 echo"<a href='$path$entry' class='btn btn-info btn-block' role='button'>$entry</a><br>";
             }
             closedir($handle);
-          }
-		  // Adicionado a pedido do Renato / Validado com a Ana
-			echo"<a href='https://play.google.com/store/apps/details?id=br.com.dextmobile.bigmais.app' target='_blank' class='btn btn-info btn-block' role='button'>Dext Mobile Big Mais SM</a><br>";
+          }  
           ?>
           
         </div>
