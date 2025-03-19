@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<html lang="en">
 
 <head>
     <?php include 'custom/header.php'; ?>
 </head>
 
-<body>
-    <?php include 'custom/navbar.php'; ?>
-    <div class="content-inner">
-        <header class="page-header">
-            <div class="container-fluid">
-                <div class="no-margin-bottom">
+<body style='background-color:#d9d9d9;'>
+    <?php include 'custom/navbar.php'; ?><br><br><br>
+    <div class="container-fluid">
         <?php
 $inconsistencias = "SELECT 
  NROEMPRESA,
@@ -49,9 +46,9 @@ $oraPorta        = "1521";
 
  }else{ ?>
 
-<div class="card">
-            <div class="card-body">
-            <h3>SENHAS</h3>
+        <div class="panel panel-default">
+            <div class="panel-heading">PAINEL DE INCONSISTENCIAS</div>
+            <div class="panel-body">
 
                 <table id="senhas" class="table table-condensed table-bordered table-striped">
                     <thead>
@@ -77,8 +74,7 @@ $oraPorta        = "1521";
                                 <form class="form-inline" action="consinco-alterar-senha.php" method='GET'>
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="senha" name="senha">
-                                        <input type="hidden" id="usuario" name="usuario"
-                                            value="<?php echo $row["CODUSUARIO"]; ?>">
+                                        <input type="hidden" id="usuario" name="usuario" value="<?php echo $row["CODUSUARIO"]; ?>">
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-sm">
                                         <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
@@ -105,8 +101,8 @@ $oraPorta        = "1521";
 ?>
     </div>
     </div>
-    </div>
     <?php include 'custom/footer.php'; ?>
+
 </body>
 
 </html>

@@ -1,12 +1,9 @@
-<title>BIG MAIS SUPERMERCADOS</title>
+<title>SISTEMAS</title>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="all,follow">
-<link rel="stylesheet" href="custom/dist/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="custom/dist/vendor/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="custom/dist/css/fontastic.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-<link rel="stylesheet" href="custom/dist/css/style.big.css" id="theme-stylesheet">
-<link rel="shortcut icon" href="img/favicon.ico">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">

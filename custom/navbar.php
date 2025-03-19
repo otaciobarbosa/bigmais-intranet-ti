@@ -1,81 +1,58 @@
-<div class="page">
-    <header class="header">
-        <nav class="navbar">
-            <div class="container-fluid">
-                <div class="navbar-holder d-flex align-items-center justify-content-between">
-                    <div class="navbar-header">
-                        <a href="index.php" class="navbar-brand">
-                            <div class="brand-text brand-big">
-                                <strong>
-                                    Big Mais Supermercados
-                                </strong>
-                            </div>
-                            <div class="brand-text brand-small"><strong>BM</strong></div>
-                        </a>
-                        <a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
-                    </div>
-                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link logout" data-toggle="modal" data-target="#myModal">Ajuda
-                                <i class="fa fa-question-circle"></i></a>
-                        </li>
-
-                        <li class="nav-item"><a href="logout.php" class="nav-link logout">Sair
-                                <i class="fa fa-sign-out"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="page-content d-flex align-items-stretch">
-        <nav class="side-navbar">
-            <ul class="list-unstyled">
-                <li>
-                    <a href="index.php">
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        INICIO
-                    </a>
-                </li>
-                <li style="background-color:#000000;color:#FFFFFF;">
-                <span class="heading" >
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.php">
+            <span class="glyphicon glyphicon-tasks"></span>
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li>
+                <a class="dropdown-toggle" data-toggle="dropdown">
                     SOCIN
-                </span>
-                </li>
-                <li>
-                    <a href="socin-movimento.php">
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        MOVIMENTO
-                    </a>
-                </li>
-                <li>
-                    <a href="nfce.php">
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        NFCE
-                    </a>
-                </li>
-                <li style="background-color:#000000;color:#FFFFFF;">
-                <span class="heading" >
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="socin-movimento.php">
+                            <span class="glyphicon glyphicon-triangle-right"></span>
+                            MOV OPERADOR
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" data-toggle="dropdown">
                     CONSINCO
-                </span>
-                </li>
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
                 <li>
-                    <a href="consinco-fechamento.php">
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        FECHAMENTO
-                    </a>
-                </li>
+                        <a href="consinco-senhas.php">
+                        <span class="glyphicon glyphicon-triangle-right"></span>
+                        ALTERAR SENHA OPERADOR
+                        </a>
+                    </li>
                 <li>
-                    <a href="consinco-senhas.php">
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        SENHA OPERADOR
-                    </a>
-                </li>
-                <li>
-                    <a href="consinco-pedido.php">
-                        <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        PEDIDO TELEMARKETING
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
+                        <a href="consinco-inconsistencias.php">
+                        <span class="glyphicon glyphicon-triangle-right"></span>
+                        PAINEL DE INCONSISTENCIAS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consinco-inconsistencia-33.php">
+                        <span class="glyphicon glyphicon-triangle-right"></span>
+                        INCONSISTENCIA 33
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consinco-inconsistencia-86.php">
+                        <span class="glyphicon glyphicon-triangle-right"></span>
+                        INCONSISTENCIA 86
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li><a href="#"></a></li>
+        </ul>
+    </div>
+</nav>

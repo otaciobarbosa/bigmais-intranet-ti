@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<html lang="en">
 
 <head>
     <?php include 'custom/header.php'; ?>
 </head>
 
-<body>
-    <?php include 'custom/navbar.php'; ?>
-    <div class="content-inner">
-        <header class="page-header">
-            <div class="container-fluid">
-                <div class="no-margin-bottom">
+<body style='background-color:#d9d9d9;'>
+    <?php include 'custom/navbar.php'; ?><br><br><br>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-inline" action="apagar-inconsistencia-33.php" method='GET'>
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        APAGAR INCONSISTENCIA 33
+                    </button>
+                </form>
+            </div>
             <?php
 $inconsistencias = "SELECT DISTINCT 
 RF_INCONSISTENC.SEQINCONSIST,
@@ -68,9 +74,11 @@ $oraPorta        = "1521";
     oci_close($con);
 
  }else{ ?>
-        <div class="card">
-            <div class="card-body">
-            <h3>PAINEL DE INCONSISTENCIAS</h3>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">PAINEL DE INCONSISTENCIAS</div>
+                <div class="panel-body">
+
                     <table class="table table-condensed table-bordered table-striped">
                         <thead>
                             <tr>
@@ -135,6 +143,7 @@ $oraPorta        = "1521";
     </div>
     </div>
     <?php include 'custom/footer.php'; ?>
+
 </body>
 
 </html>
