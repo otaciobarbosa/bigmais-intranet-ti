@@ -4,7 +4,25 @@
     $host = '192.168.0.245/bigmais';
     $porta = '1521';
     
-    $oracle = 'SELECT * FROM OBV_VALIDA_VENDA_LOJA ORDER BY LOJA';
+    $oracle = 'SELECT 
+				P.NROEMPRESA AS LOJA,
+				ROUND((SYSDATE - MAX(P.DTAHORAEMISSAO)) * 60 * 60 * 24) AS ULTIMAVENDA,
+				TO_CHAR(MAX(P.DTAHORAEMISSAO), \'HH24:MI:SS\') AS HORA,
+				SYSDATE AS HORAAGORA,
+				MAX(P.DTAHORAEMISSAO) AS HORAVENDA,
+				TO_CHAR(
+					NUMTODSINTERVAL(SYSDATE - MAX(P.DTAHORAEMISSAO), \'DAY\'), 
+					\'HH24:MI:SS\'
+				) AS INTEGRACAO,
+				COUNT(*) AS TOTAL
+			FROM 
+				PDV_DOCTO P
+			WHERE 
+				P.DTAMOVIMENTO = TRUNC(SYSDATE)
+			GROUP BY 
+				P.NROEMPRESA
+			ORDER BY 
+				P.NROEMPRESA';
     
     try{
         
@@ -28,40 +46,43 @@
         }
         
         while (($row = oci_fetch_assoc($stmt)) != false) {
-            echo "<tr class='size' style='padding:5px;line-height:10px;'>";    
+            echo "<tr class='size' style='padding:5px;line-height:10px;vertical-align:middle;text-align:left;'>";    
             
             switch ($row['LOJA']) {
                 
                 case 1:
-                echo "<td>Loja 1 - Jardim Pérola</td>";	
+                echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;text-align:left;'>Loja 1 - Jardim Pérola </td>";
                 break;
                 
                 case 2:
-                echo "<td>Loja 2 - Treze de Maio</td>";	
+                echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;text-align:left;'>Loja 2 - Treze de Maio </td>";
                 break; 
                 
                 case 4:
-                echo "<td>Loja 4 - Lagoa Santa</td>";	
+                echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;text-align:left;'>Loja 4 - Lagoa Santa   </td>";
                 break;	
                 
                 case 5:
-                echo "<td>Loja 5 - Altinópolis</td>";	;	
+                echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;text-align:left;'>Loja 5 - Altinópolis   </td>";
                 break;	
                 
                 case 8:
-                echo "<td>Loja 8 - Vila Isa</td>";	;	
+                echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;text-align:left;'>Loja 8 - Vila Isa      </td>";
                 break;	
                 
                 case 9:
-                echo "<td>Loja 9 - São Pedro</td>";	
+                echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;text-align:left;'>Loja 9 - São Pedro     </td>";
                 break;			
             }	
             
+			$Integracao = str_replace('+000000000','', $row['INTEGRACAO']);
+			$Integracao = str_replace('-000000000','', $Integracao);
+			$Integracao = str_replace('.000000000','', $Integracao);
             
-            echo "<td>" . $row['HORA'] . "</td>";
-            echo "<td>" . $row['TOTAL'] . "</td>";
-            echo "<td>" . gmdate('H:i:s', $row['ULTIMAVENDA']) . "</td>";
-            if($row['ULTIMAVENDA'] >= 1800){echo "<td style='padding:0px;'><img src='img/vermelha.png' style='width:30px;'></td>"; }else{ echo "<td><img src='img/verde.png' style='width:40px;'></td>";};
+            echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;'>" . $row['HORA'] . "</td>";
+            echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;'>" . $row['TOTAL'] . "</td>";
+            echo "<td style='font-size:0.9em !important;vertical-align:middle;padding-top:10px;'>" . $Integracao. "</td>";
+            if($row['HORAVENDA'] >= 1800){echo "<td style='padding:0px;'><img src='img/vermelha.png' style='width:30px;'></td>"; }else{ echo "<td><img src='img/verde.png' style='width:40px;'></td>";};
             echo "</tr>";
         };
         

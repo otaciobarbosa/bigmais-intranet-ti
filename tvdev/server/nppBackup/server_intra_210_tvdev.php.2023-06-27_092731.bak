@@ -1,0 +1,12 @@
+<?php
+	require 'conexao.php';
+	$stmt = $pdo->prepare("SELECT * FROM controle");
+	if ($stmt->execute())					
+	{
+		$row = $stmt->fetch(); 		
+		preg_match('/(\d+)%/', $row210["disco"], $matches);
+		$percentage = $matches[1];
+		$disco = trim($percentage . PHP_EOL);				
+	}	
+	?>
+	

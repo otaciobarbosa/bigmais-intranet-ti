@@ -1,0 +1,39 @@
+<?php
+	require 'conexao.php';
+	$stmt210 = $pdo->prepare("SELECT * FROM controle");
+	if ($stmt210->execute())					
+	{
+		$row210 = $stmt210->fetch(); 
+		$style210 = '';
+		
+		
+		preg_match('/(\d+)%/', $row210["disco"], $matches);
+		$percentage = $matches[1];
+		$disco = $percentage . PHP_EOL;				
+		
+		if($disco > 95){
+			$style210 = 'danger';	
+		}else{
+			$style210 = 'success';
+		}	
+	?>
+	<div class="card z-index-2 bg-dark">
+		<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+			<div class="bg-gradient-secondary shadow-dark border-radius-lg p-3 pe-1">                  
+				<h4 class="mb-0 " style="font-size:0.9em !important;">
+					Intra - <span class="stloja">192.168.</span>0.210
+				</h4>						
+				<div class="progress p-0" style="margin-bottom:15px;font-size:0.8em;padding: 0.5em;height:30px;">
+					<div class="progress-bar progress-bar-animated progress-bar-<?php echo $style210; ?> progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $disco; ?>%;height:45px;padding-top:3px">
+						<?php echo $disco; ?>%
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">											
+		<?php }	?>												
+		<div class="d-flex ">							
+			<p class="mb-0 text-sm"><i class="fa fa-clock"></i> <?php echo date('d/m/Y \à\s\ H:i:s', strtotime ($row210['controle_log'])); ?></p>
+		</div>
+	</div>
+</div>	

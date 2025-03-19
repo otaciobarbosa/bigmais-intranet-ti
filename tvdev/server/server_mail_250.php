@@ -1,0 +1,29 @@
+				<?php
+					require 'conexao.php';
+					$stmt250 = $pdo->prepare("SELECT * FROM controle where controle_loja = '250'");
+					if ($stmt250->execute())					
+					{
+					$row250 = $stmt250->fetch(); 
+					$dados = $row250['controle_descricao'];							
+						$dados = str_replace(' ', '*', $dados); 
+						$dados = str_replace('**', '*', $dados); 
+						$dados = str_replace('**', '*', $dados); 
+						$dados = str_replace('**', '*', $dados); 
+						$dados = str_replace('**', '*', $dados); 
+						$dados = explode('*', $dados);
+												
+						$style250 = '';
+						if(substr($dados[31],0,2) > 95){
+							$style250 = 'danger';	
+						}else{
+							$style250 = 'success';
+						} ?>							
+						
+						
+						<?php echo $dados[26]; ?>
+						
+						<?php echo $dados[31]; ?>
+						
+						
+						<?php }	?>
+						

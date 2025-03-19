@@ -32,6 +32,7 @@
                 echo "<tr>";                
                   echo "<td>" . gmdate('H:i:s', $data_logon) . "</td>";
                   echo "<td>" . $row['SID'] . "</td>";
+                  echo "<td>" . $row['SERIAL'] . "</td>";
                   echo "<td>" . $row['PROCESS'] . "</td>";
                   echo "<td>" . $row['PROGRAM'] . "</td>";
                   echo "<td>" . $row['USUARIO'] . "</td>";

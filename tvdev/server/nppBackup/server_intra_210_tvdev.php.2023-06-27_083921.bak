@@ -1,0 +1,18 @@
+<?php
+	require 'conexao.php';
+	$stmt210 = $pdo->prepare("SELECT * FROM controle where controle_loja = '210'");
+	if ($stmt210->execute())					
+	{
+		$row210 = $stmt210->fetch(); 
+		$dados = explode(' ', $dados);		
+		$style210 = '';
+		if(substr($dados[21],0,2) > 95){
+			$style210 = 'danger';	
+			}else{
+			$style210 = 'success';
+		}
+		
+		echo $dados[0];
+	}
+	?>
+	

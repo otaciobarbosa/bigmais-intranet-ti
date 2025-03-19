@@ -9,9 +9,9 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="http://192.168.0.210/intranet/assets/fontawesome/css/all.min.css" />  
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 		
-		<style>
+		<style>			
 			.stloja{color:#999;}
 			.nomeserver h4{font-size:0.8em !important;}	
 			html{background-color:#222222 !important;background-size:cover;padding:0,8%;}
@@ -154,21 +154,21 @@
 		</style>
 		
 	</head>  
-	<body>
+	<body style="max-width: 1360px;margin: 0 auto;">
 		<div style="width:95%;margin:0 auto;">  
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-8">
 					<center><h4 style="padding-top:10px;font-weight:700;">INTEGRAÇÃO DE VENDAS EM LOJAS (por tempo) <?php echo gethostbyaddr($_SERVER['REMOTE_ADDR']); ?></h4></center>
 					<div class="table-responsive" style="overflow-y: auto;height:395px;">
 						<div class="panel panel-default">
-							<table class="table table-bordered table-hover table-condensed">
+							<table class="table table-bordered table-hover table-condensed table-sm">
 								<thead>
 									<tr>
-										<th width="30%">LOJA</th>
+										<th style="text-align:left;width:40%;">LOJA</th>
 										<th>HORA</th>
 										<th>CUPONS</th>
 										<th>INTEGRACAO</th>
-										<th>STATUS</th>
+										<th width="5%">STATUS</th>
 									</tr>
 								</thead>
 								<tbody id="tab_vendas"></tbody>
@@ -176,11 +176,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">			
+				<div class="col-md-4">			
 					<center><h4 style="padding-top:10px;font-weight:700;">Portas em uso 210</h4></center>
 					<div class="table-responsive" style="overflow-y: auto;height:395px;">
 						<div class="panel panel-default">
-							<table class="table table-bordered table-hover table-condensed">
+							<table class="table table-bordered table-hover table-condensed table-sm">
 								<thead>
 									<tr>
 										<th>App</th>								
@@ -270,182 +270,40 @@
 						<div class="panel panel-default" id="servidores" style="border:0px;width:95%;margin:0 auto;"></div> 
 					</div> 
 					
-					<script>
-						$(document).ready(function(){
-							
-							setInterval(function(){
-								$('#tab_vendas').load("tab_vendas.php").fadeIn("slow");  
-							}, 10000);
-							
-							setInterval(function(){
-								$('#tab_processos').load("tab_processos.php").fadeIn("slow");  
-							}, 10000);
-							
-							var Antigo_Totvs_243 = '192.168.0.243';
-							$('#Antigo_Totvs_243').load("server_ping.php?ip="+Antigo_Totvs_243).fadeIn("slow");  
-							setInterval(function(){
-								$('#Antigo_Totvs_243').load("server_ping.php?ip="+Antigo_Totvs_243).fadeIn("slow");  
-							},5000); 
-							
-							var Totvs_203 = '192.168.0.203';
-							$('#Totvs_203').load("server_ping.php?ip="+Totvs_203).fadeIn("slow");  
-							setInterval(function(){
-								$('#Totvs_203').load("server_ping.php?ip="+Totvs_203).fadeIn("slow");  
-							},5000); 		
-							
-							var AvancoNovo_236 = '192.168.0.236';
-							$('#AvancoNovo_236').load("server_ping.php?ip="+AvancoNovo_236).fadeIn("slow");  
-							setInterval(function(){
-								$('#AvancoNovo_236').load("server_ping.php?ip="+AvancoNovo_236).fadeIn("slow");  
-							},5000); 
-							
-							var AvancoUbuntu_240 = '192.168.0.240';
-							$('#AvancoUbuntu_240').load("server_ping.php?ip="+AvancoUbuntu_240).fadeIn("slow");  
-							setInterval(function(){
-								$('#AvancoUbuntu_240').load("server_ping.php?ip="+AvancoUbuntu_240).fadeIn("slow");  
-							},5000); 
-							
-							var C5ColetCont_248 = '192.168.0.248';
-							$('#C5ColetCont_248').load("server_ping.php?ip="+C5ColetCont_248).fadeIn("slow");  
-							setInterval(function(){
-								$('#C5ColetCont_248').load("server_ping.php?ip="+C5ColetCont_248).fadeIn("slow");  
-							},5000); 
-							
-							var NovoIntraNet_210 = '192.168.0.210';
-							$('#NovoIntraNet_210').load("server_ping.php?ip="+NovoIntraNet_210).fadeIn("slow");  
-							setInterval(function(){
-								$('#NovoIntraNet_210').load("server_ping.php?ip="+NovoIntraNet_210).fadeIn("slow");  
-							},5000); 
-							
-							var Proxy_250 = '192.168.0.250';
-							$('#Proxy_250').load("server_ping.php?ip="+Proxy_250).fadeIn("slow");  
-							setInterval(function(){
-								$('#Proxy_250').load("server_ping.php?ip="+Proxy_250).fadeIn("slow");  
-							},5000); 
-							
-							var SocinC5_251 = '192.168.0.251';
-							$('#SocinC5_251').load("server_ping.php?ip="+SocinC5_251).fadeIn("slow");  
-							setInterval(function(){
-								$('#SocinC5_251').load("server_ping.php?ip="+SocinC5_251).fadeIn("slow");  
-							},5000); 
-							
-							var SrvDocs_150 = '192.168.0.150';
-							$('#SrvDocs_150').load("server_ping.php?ip="+SrvDocs_150).fadeIn("slow");  
-							setInterval(function(){
-								$('#SrvDocs_150').load("server_ping.php?ip="+SrvDocs_150).fadeIn("slow");  
-							},5000); 
-							
-							var SrvEmail_250 = '192.168.0.250';
-							$('#SrvEmail_250').load("server_ping.php?ip="+SrvEmail_250).fadeIn("slow");  
-							setInterval(function(){
-								$('#SrvEmail_250').load("server_ping.php?ip="+SrvEmail_250).fadeIn("slow");  
-							},5000); 
-							
-							var Veltio_249 = '192.168.0.249';
-							$('#Veltio_249').load("server_ping.php?ip="+Veltio_249).fadeIn("slow");  
-							setInterval(function(){
-								$('#Veltio_249').load("server_ping.php?ip="+Veltio_249).fadeIn("slow");  
-							},5000); 
-							
-							var VipCommerce_242 = '192.168.0.242';
-							$('#VipCommerce_242').load("server_ping.php?ip="+VipCommerce_242).fadeIn("slow");  
-							setInterval(function(){
-								$('#VipCommerce_242').load("server_ping.php?ip="+VipCommerce_242).fadeIn("slow");  
-							},5000); 
-							
-							var VoipE1_222 = '192.168.0.222';
-							$('#VoipE1_222').load("server_ping.php?ip="+VoipE1_222).fadeIn("slow");  
-							setInterval(function(){
-								$('#VoipE1_222').load("server_ping.php?ip="+VoipE1_222).fadeIn("slow");  
-							},5000);
-							
-							var VoipBig_220 = '192.168.0.220';
-							$('#VoipBig_220').load("server_ping.php?ip="+VoipBig_220).fadeIn("slow");  
-							setInterval(function(){
-								$('#VoipBig_220').load("server_ping.php?ip="+VoipBig_220).fadeIn("slow");  
-							},5000); 		        
-							
-							var TEF_77 = '192.168.0.77';
-							$('#TEF_77').load("server_ping.php?ip="+TEF_77).fadeIn("slow");  
-							setInterval(function(){
-								$('#TEF_77').load("server_ping.php?ip="+TEF_77).fadeIn("slow");  
-							},5000);         
-							
-							var BigSrvTotAntNaoLigar = '192.168.0.236';
-							$('#BigSrvTotAntNaoLigar').load("server_ping.php?ip="+BigSrvTotAntNaoLigar).fadeIn("slow");  
-							setInterval(function(){
-								$('#BigSrvTotAntNaoLigar').load("server_ping.php?ip="+BigSrvTotAntNaoLigar).fadeIn("slow");  
-							},5000); 
-							
-							var IIS_TotvCurric_228 = '192.168.0.228';
-							$('#IIS_TotvCurric_228').load("server_ping.php?ip="+IIS_TotvCurric_228).fadeIn("slow");  
-							setInterval(function(){
-								$('#IIS_TotvCurric_228').load("server_ping.php?ip="+IIS_TotvCurric_228).fadeIn("slow");  
-							},5000);         
-							
-							var NDD_244 = '192.168.0.244';
-							$('#NDD_244').load("server_ping.php?ip="+NDD_244).fadeIn("slow");  
-							setInterval(function(){
-								$('#NDD_244').load("server_ping.php?ip="+NDD_244).fadeIn("slow");  
-							},5000);         
-							
-							var Python_209 = '192.168.0.209';
-							$('#Python_209').load("server_ping.php?ip="+Python_209).fadeIn("slow");  
-							setInterval(function(){
-								$('#Python_209').load("server_ping.php?ip="+Python_209).fadeIn("slow");  
-							},5000); 
-							
-							var SrvDpNovo_130 = '192.168.0.130';
-							$('#SrvDpNovo_130').load("server_ping.php?ip="+SrvDpNovo_130).fadeIn("slow");  
-							setInterval(function(){
-								$('#SrvDpNovo_130').load("server_ping.php?ip="+SrvDpNovo_130).fadeIn("slow");  
-							},5000); 
-							
-							var SrvGED_200 = '192.168.0.200';
-							$('#SrvGED_200').load("server_ping.php?ip="+SrvGED_200).fadeIn("slow");  
-							setInterval(function(){
-								$('#SrvGED_200').load("server_ping.php?ip="+SrvGED_200).fadeIn("slow");  
-							},5000); 
-							
-							var Supervisorio_100 = '192.168.0.100';
-							$('#Supervisorio_100').load("server_ping.php?ip="+Supervisorio_100).fadeIn("slow");  
-							setInterval(function(){
-								$('#Supervisorio_100').load("server_ping.php?ip="+Supervisorio_100).fadeIn("slow");  
-							},5000);                         
-							
-							// var vCenter_248 = '192.168.0.248';
-							// $('#vCenter_248').load("server_ping.php?ip="+vCenter_248).fadeIn("slow");  
-							// setInterval(function(){
-							// $('#vCenter_248').load("server_ping.php?ip="+vCenter_248).fadeIn("slow");  
-							// },5000); 
-							
-							var VeltioBanco_149 = '192.168.0.149';
-							$('#VeltioBanco_149').load("server_ping.php?ip="+VeltioBanco_149).fadeIn("slow");  
-							setInterval(function(){
-								$('#VeltioBanco_149').load("server_ping.php?ip="+VeltioBanco_149).fadeIn("slow");  
-							},5000); 
-							
-							var Vitruvio_205 = '192.168.0.205';
-							$('#Vitruvio_205').load("server_ping.php?ip="+Vitruvio_205).fadeIn("slow");  
-							setInterval(function(){
-								$('#Vitruvio_205').load("server_ping.php?ip="+Vitruvio_205).fadeIn("slow");  
-							},5000);
-							
-							var ServBackUp_142 = '192.168.0.142';
-							$('#ServBackUp_142').load("server_ping.php?ip="+ServBackUp_142).fadeIn("slow");  
-							setInterval(function(){
-								$('#ServBackUp_142').load("server_ping.php?ip="+ServBackUp_142).fadeIn("slow");  
-							},5000);
-							///////////////////// Concentrador 251 ///////////////////// 	
-							$('#conc_251').load("/intranet/server/server_conc_251_tvdev.php").fadeIn("slow");  
-							setInterval(function(){
-								$('#conc_251').load("/intranet/server/server_conc_251_tvdev.php").fadeIn("slow");  
-							},5000); 					
-						});    
-						
-					</script>    
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 					
-					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+					<script>
+						$(document).ready(function() {
+						const servers = [
+							'192.168.0.243', '192.168.0.203', '192.168.0.236', '192.168.0.240',
+							'192.168.0.248', '192.168.0.210', '192.168.0.250', '192.168.0.251',
+							'192.168.0.150', '192.168.0.249', '192.168.0.242', '192.168.0.222',
+							'192.168.0.220', '192.168.0.77', '192.168.0.236', '192.168.0.228',
+							'192.168.0.244', '192.168.0.209', '192.168.0.130', '192.168.0.200',
+							'192.168.0.100', '192.168.0.149', '192.168.0.205', '192.168.0.142'
+						];
+
+						function updateServerStatus(ip) {
+							$(`#${ip}`).load(`server_ping.php?ip=${ip}`).fadeIn("slow");
+						}
+
+						servers.forEach(ip => {
+							updateServerStatus(ip);
+							setInterval(() => updateServerStatus(ip), 5000);
+						});
+
+						setInterval(function() {
+							$('#tab_vendas').load("tab_vendas.php").fadeIn("slow");
+							$('#tab_processos').load("tab_processos.php").fadeIn("slow");
+						}, 10000);
+
+						// $('#conc_251').load("server/server_conc_251_tvdev.php").fadeIn("slow");
+						// setInterval(() => $('#conc_251').load("server/server_conc_251_tvdev.php").fadeIn("slow"), 5000);
+					});
+					</script>
+    
+					
+					
 					<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>    
 					
 				</body>
@@ -458,6 +316,7 @@
 				///////////////// SERVIDORES E CONCENTRADORES /////////////////
 				function getallConcentradores() {
 					$('#servidores').html('');
+					
 					$.ajax({
 						url: "ajax/getserver.php",
 						method: "GET",
@@ -470,18 +329,11 @@
 							
 							$.each(data, function(index, item) {
 								
-								if (['251'].includes(item.controle_loja)) {
-									
+								
+								if (['251'].includes(item.controle_loja)) {								
+									// Tratamento para o disco principal
 									const matches = item.disco.match(/(\d+)%/);
-									disco = matches[1];
-									
-									const matchesDisco2 = item.disco2.match(/(\d+)%/); // Extrai a porcentagem do campo disco2
-									disco2 = matchesDisco2[1]; // Obtém a porcentagem
-									
-									const progressBar = document.querySelector(".progress-bar");
-									
-									var element_bar_disco = (disco > 95) ? "danger" : "success";
-									var element_bar_disco2 = (disco2 > 95) ? "danger" : "success"; // Define a classe da barra de progresso para disco2
+									disco = matches ? matches[1] : 0;
 									
 									const string = item.disco;
 									const regex = /(\d+G)/;
@@ -489,72 +341,76 @@
 									
 									if (match && match.length > 0) {
 										var tam_disco = match[0].toLowerCase();
+									} else {
+										var tam_disco = "0Gb";
 									}
 									
-									// Código adicional para disco2
-									const stringDisco2 = item.disco2;
-									const matchDisco2 = stringDisco2.match(regex);
+									var element_bar_disco = (disco > 95) ? "danger" : "success";
 									
-									if (matchDisco2 && matchDisco2.length > 0) {
-										var tam_disco2 = matchDisco2[0].toLowerCase();
+									// Tratamento para o disco2, verificando se não está vazio
+									var disco2 = 0;
+									var tam_disco2 = "0Gb";
+									var element_bar_disco2 = "success";
+									
+									if (item.disco2 && item.disco2.trim() !== "") {
+										const matchesDisco2 = item.disco2.match(/(\d+)%/);
+										disco2 = matchesDisco2 ? matchesDisco2[1] : 0;
+										
+										const stringDisco2 = item.disco2;
+										const matchDisco2 = stringDisco2.match(regex);
+										
+										if (matchDisco2 && matchDisco2.length > 0) {
+											tam_disco2 = matchDisco2[0].toLowerCase();
+										}
+										
+										element_bar_disco2 = (disco2 > 95) ? "danger" : "success";
 									}
 									
-									
-									if(item.banco !== null){
-										const matches = item.banco.match(/(\d+)%/);
-										banco = matches[1];
-										}else{
-										banco = 0;
-									}
-									
-									if(item.banco == null){
+									// Tratamento para o banco
+									var banco = 0;
+									var tam_banco = "0Gb";
+									var element_bar_banco = "success";
 									var prog_banco = "display:none;";
-									}else{
-									var prog_banco = "display:flex;";
 									
-									const string = item.banco;
-									const regex = /(\d+G)/;
-									const match = string.match(regex);
-									
-									if (match && match.length > 0) {
-										var tam_banco = match[0].toLowerCase();
+									if (item.banco !== null && item.banco !== "") {
+										const bancoMatches = item.banco.match(/(\d+)%/);
+										banco = bancoMatches ? bancoMatches[1] : 0;
+										
+										const stringBanco = item.banco;
+										const matchBanco = stringBanco.match(regex);
+										
+										if (matchBanco && matchBanco.length > 0) {
+											tam_banco = matchBanco[0].toLowerCase();
+										}
+										
+										element_bar_banco = (banco > 95) ? "danger" : "success";
+										prog_banco = "display:flex;";
 									}
-								}
-								
-								if(banco > 95)
-								{
-									element_bar_banco = "danger";
-									}else{
-									element_bar_banco = "success";
-								}
-								
-								const dtOriginal = item.controle_log;
-								
-								const dat = new Date(dtOriginal);
-								
-								const dtFormatada = dat.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric' });							
-								
-								html += '<div class="col-md-4" style="padding:3px;"><ul class="list-group">\
-								<li class="list-group-item"><strong>'+ item.desc_server +'</strong><br>192.168.<strong>'+item.server+'</strong></li>\
-								<li class="list-group-item">\
-								<div class="d-flex align-items-center prog_disco" style="display: flex;justify-content: space-around;">\
-								<i class="fa-solid fa-server" style="margin-top:4px;"></i>\
-								<div class="col-md-6">\
-								<div class="progress" style="margin-left:20px;width:90%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_disco+'" role="progressbar" aria-valuenow="'+disco+'" aria-valuemin="0" aria-valuemax="100" style="width: '+disco+'%;">'+disco+'%</div></div>\
-								</div>\
-								<div class="col-md-6">\
-								<div class="progress" style="width:100%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_disco2+'" role="progressbar" aria-valuenow="'+disco2+'" aria-valuemin="0" aria-valuemax="100" style="width: '+disco2+'%;">'+disco2+'%</div></div>\
-								</div>\
-								<span class="desc_disco">Disco: '+ tam_disco +'b</span><span class="desc_particao">Partição: /server </span>\
-								</div>\
-								<div class="d-flex align-items-center" style="'+ prog_banco +';justify-content: space-around;">\
-								<i class="fa-solid fa-database" style="margin-top:4px;"></i>\
-								<div class="progress" style="width:85%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_banco+'" role="progressbar" aria-valuenow="'+ banco +'" aria-valuemin="0" aria-valuemax="100" style="width: '+ banco +'%;">'+ banco +'%</div></div>\
-								<span class="desc_banco">Banco: '+ tam_banco +'b / '+item.desc_banco+'</span>\
-								</div>\
-								</li>\
-								</ul></div>';
-								
+									
+									const dtOriginal = item.controle_log;
+									const dat = new Date(dtOriginal);
+									const dtFormatada = dat.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric' });							
+									
+									html += '<div class="col-md-4" style="padding:3px;"><ul class="list-group">\
+									<li class="list-group-item"><strong>'+ item.desc_server +'</strong><br>192.168.<strong>'+item.server+'</strong></li>\
+									<li class="list-group-item">\
+									<div class="d-flex align-items-center prog_disco" style="display: flex;justify-content: space-around;">\
+									<i class="fa-solid fa-server" style="margin-top:4px;"></i>\
+									<div class="col-md-6">\
+									<div class="progress" style="margin-left:20px;width:90%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_disco+'" role="progressbar" aria-valuenow="'+disco+'" aria-valuemin="0" aria-valuemax ="100" style="width: '+disco+'%;">'+disco+'%</div></div>\
+									</div>\
+									<div class="col-md-6">\
+									<div class="progress" style="width:100%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_disco2+'" role="progressbar" aria-valuenow="'+disco2+'" aria-valuemin="0" aria-valuemax="100" style="width: '+disco2+'%;">'+disco2+'%</div></div>\
+									</div>\
+									<span class="desc_disco">Disco: '+ tam_disco +'b</span><span class="desc_particao">Partição: /server </span>\
+									</div>\
+									<div class="d-flex align-items-center" style="'+ prog_banco +';justify-content: space-around;">\
+									<i class="fa-solid fa-database" style="margin-top:4px;"></i>\
+									<div class="progress" style="width:85%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_banco+'" role="progressbar" aria-valuenow="'+ banco +'" aria-valuemin="0" aria-valuemax="100" style="width: '+ banco +'%;">'+ banco +'%</div></div>\
+									<span class="desc_banco">Banco: '+ tam_banco +'b / '+item.desc_banco+'</span>\
+									</div>\
+									</li>\
+									</ul></div>';								
 								}
 								
 								if (['1', '2', '5'].includes(item.controle_loja)) {
@@ -615,7 +471,7 @@
 									
 									html += '<div class="col-md-4" style="padding:3px;"><ul class="list-group">\
 									<li class="list-group-item"><strong>'+ item.desc_server +'</strong><br>192.168.<strong>'+item.server+'</strong></li>\
-									<li class="list-group-item">\
+									<li class="list-group-item" style="min-height:110px;">\
 									<div class="d-flex align-items-center prog_disco" style="display: flex;justify-content: space-around;">\
 									<i class="fa-solid fa-server" style="margin-top:4px;"></i>\
 									<div class="progress" style="width:85%;background-color: #c6c6c6;"><div class="progress-bar progress-bar-'+element_bar_disco+'" role="progressbar" aria-valuenow="'+disco+'" aria-valuemin="0" aria-valuemax="100" style="width: '+disco+'%;">'+disco+'%</div></div>\
@@ -695,7 +551,7 @@
 									
 									const dtFormatada = dat.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric' });							
 									
-									html += '<div class="col-md-3" style="padding:3px;"><ul class="list-group">\
+									html += '<div class="col-md-4" style="padding:3px;"><ul class="list-group">\
 									<li class="list-group-item"><strong>'+ item.desc_server +'</strong><br>192.168.<strong>'+item.server+'</strong></li>\
 									<li class="list-group-item" style="min-height:110px;">\
 									<div class="d-flex align-items-center prog_disco" style="display: flex;justify-content: space-around;">\
@@ -728,21 +584,24 @@
 				}
 				
 				function getPortas() {
-					$('#tab_portas').html(''); // Limpa o conteúdo da tabela				
+					$('#tab_portas').html(''); // Limpa o conteúdo da tabela
 					$.ajax({
-						url: "http://192.168.0.210/intra/sistemas/bigmais/jobs/verifica_portas.php",
+						url: "ajax/verifica_portas.php",
 						method: "GET",
 						dataType: "json", // Define o tipo de dados esperado como JSON
 						success: function(data) {
 							var gPortas = '';
-							$.each(data, function(index, item) {	
-								var porta = item.port.replace('intraweb2.bigmais.local','*');
-								$('#tab_portas').append('<tr><td>'+item.name+'</td><td><strong>'+porta+'</strong></td></tr>');
+							$.each(data, function(index, item) {    
+								gPortas += '<tr>';
+								gPortas += '<td>' + item.app + '</td>';
+								gPortas += '<td>' + item.port + '</td>';
+								gPortas += '</tr>';
 							});
+							$('#tab_portas').html(gPortas); // Adiciona as linhas à tabela
 						}
-					})
-					
+					});
 				}
+
 				
 				
 				function get236() {

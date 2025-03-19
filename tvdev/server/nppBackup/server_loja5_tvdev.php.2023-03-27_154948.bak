@@ -1,0 +1,87 @@
+					<?php 											
+					require 'conexao.php';
+					$stmt5 = $pdo->prepare("SELECT * FROM controle where controle_loja = '5'");
+					if ($stmt5->execute())
+					{					
+						$row5 = $stmt5->fetch(); 
+						$dados = $row5['controle_descricao'];							
+						$dados = str_replace(' ', '*', $dados); 
+						$dados = str_replace('**', '*', $dados); 
+						$dados = str_replace('**', '*', $dados); 
+						$dados = str_replace('**', '*', $dados); 
+						$dados = str_replace('**', '*', $dados); 
+						$dados = explode('*', $dados);
+						
+						$style5_disco = '';
+						if(substr($dados[35],0,2) > 95){
+							$style5_disco = 'danger';	
+						}else{
+							$style5_disco = 'success';
+						}
+						
+						$style5_banco = '';
+						if(substr($dados[46],0,2) > 95){
+							$style5_banco = 'danger';	
+						}else{
+							$style5_banco = 'primary';
+						}							
+						?>
+					
+					<div class="card z-index-2 bg-dark">
+					
+					<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+						
+					<div class="bg-gradient-orange shadow-orange border-radius-lg p-3 pe-1">
+						
+						<h4 class="mb-0 " style="font-size:0.9em !important;">			
+							Lj 05 - <span class="stloja">192.168.</span>5.10
+						</h4>													
+						
+								<div class="progress p-0" style="margin-bottom:15px;font-size:0.8em;padding: 0.5em;height:30px;">
+									<div class="progress-bar progress-bar-animated progress-bar-<?php echo $style5_disco; ?> progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo substr($dados[35],0,2); ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo substr($dados[35],0,2); ?>%;height:45px;padding-top:3px">
+									<?php echo $dados[1].'<br>'; ?>
+									<?php echo $dados[2].'<br>'; ?>
+									<?php echo $dados[3].'<br>'; ?>
+									<?php echo $dados[4].'<br>'; ?>
+									<?php echo $dados[5].'<br>'; ?>
+									<?php echo $dados[6].'<br>'; ?>
+									<?php echo $dados[7].'<br>'; ?>
+									<?php echo $dados[8].'<br>'; ?>
+									<?php echo $dados[9].'<br>'; ?>
+									<?php echo $dados[10].'<br>'; ?>
+									<?php echo $dados[11].'<br>'; ?>
+									<?php echo $dados[12].'<br>'; ?>
+									<?php echo $dados[13].'<br>'; ?>
+									<?php echo $dados[14].'<br>'; ?>
+									<?php echo $dados[15].'<br>'; ?>
+									<?php echo $dados[16].'<br>'; ?>
+									<?php echo $dados[17].'<br>'; ?>
+									<?php echo $dados[18].'<br>'; ?>
+									<?php echo $dados[19].'<br>'; ?>
+									<?php echo $dados[21].'<br>'; ?>
+									<?php echo $dados[22].'<br>'; ?>
+									<?php echo $dados[23].'<br>'; ?>
+									<?php echo $dados[24].'<br>'; ?>
+									<?php echo $dados[25].'<br>'; ?>
+									<?php echo $dados[26].'<br>'; ?>
+									<?php echo $dados[27].'<br>'; ?>
+									<?php echo $dados[28].'<br>'; ?>
+									<?php echo $dados[29].'<br>'; ?>
+									<?php echo $dados[30].'<br>'; ?>
+									<?php echo $dados[31].'<br>'; ?>
+									<?php echo $dados[32].'<br>'; ?>
+									<?php echo $dados[33].'<br>'; ?>
+									<?php echo $dados[34].'<br>'; ?>
+									<?php echo $dados[35].'<br>'; ?>
+									<?php echo $dados[36].'<br>'; ?>
+									</div>
+								</div>						
+						</div>
+					</div>
+					<div class="card-body">											
+						<?php }	?>												
+						<div class="d-flex ">							
+							<p class="mb-0 text-sm"><i class="fa fa-clock"></i> <?php echo date('d/m/Y \à\s\ H:i:s', strtotime ($row5['controle_log'])); ?></p>
+						</div>
+					</div>
+				</div>
