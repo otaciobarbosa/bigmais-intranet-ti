@@ -1,0 +1,18 @@
+ table th,td {
+ 	white-space: nowrap;
+ }
+ th, td, th {
+ 	overflow: hidden;
+ 	text-align:center;
+ 	vertical-align:middle;
+ 	font-size: 12px;
+ }
+
+ .btn{
+ 	margin:2px;
+ }
+
+ .table-striped>tbody>tr:nth-child(odd)>td, 
+ .table-striped>tbody>tr:nth-child(odd)>th {
+ 	background-color: #EEEEE0;
+ }
